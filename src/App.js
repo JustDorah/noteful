@@ -35,12 +35,12 @@ export default class App extends Component {
       const modified = note.modified;
       const moment = require("moment");
       let d1 = moment(modified);
-      let date = d1.format("L");
+      let date = d1.format("Do MMM YYYY");
       //console.log(date);
       return (
         <div className="eachNote" key={note.id}>
           <h2>{note.name}</h2>
-          <p>Modified: {date}</p>
+          <p>Date modified on {date}</p>
           <p />
           <div className="removeNoteButton" key={note.id}>
             Delete Note
