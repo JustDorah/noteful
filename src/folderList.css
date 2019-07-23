@@ -1,0 +1,19 @@
+.eachFolder {
+  padding-left: 3px;
+  padding-top: 2px;
+  width: 100%;
+  border: 1px solid #919191;
+}
+
+.fButton {
+  margin-left: auto;
+  margin-right: auto;
+  width: 130px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #919191;
+}
+
+/* .eachNote h2 {
+  margin: 0;
+} */

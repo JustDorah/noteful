@@ -1,13 +1,20 @@
+.mainHeader {
+  text-align: center;
+  padding: 30px;
+  border-bottom: 1px solid #919191;
+}
+
 .sidebar {
   height: 100%;
   width: 160px;
   position: fixed;
   z-index: 1;
-  top: 0;
+  /* top: 0; */
   left: 0;
-  background-color: #111111;
+  /* background-color: #111111; */
   overflow: hidden;
   padding-top: 20px;
+  border-right: 1px solid #919191;
 }
 
 .sidebar a {
