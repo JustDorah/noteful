@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./main.css";
 import NoteList from "./noteList";
+import FolderList from "./folderList";
 
 export default class MainPage extends Component {
   render() {
@@ -8,19 +9,17 @@ export default class MainPage extends Component {
     // console.log(notes, "the notes");
     return (
       <div>
-        <div className="sidebar">
-          <a href="#folder1"> Folder</a>
-          <a href="#folder2"> Folder1</a>
-          <a href="#folder3"> Folder2</a>
-        </div>
-        <div className="main">
-          <header>
-            <h1>Noteful:main</h1>
-          </header>
-          <main>
-            <NoteList mainNotes={this.props.mainNotes} />
-          </main>
-        </div>
+        <header className="mainHeader">
+          <h1>Noteful:main</h1>
+        </header>
+
+        <nav className="sidebar">
+          <FolderList mainFolders={this.props.mainFolders} />
+        </nav>
+
+        <main className="main">
+          <NoteList mainNotes={this.props.mainNotes} />
+        </main>
       </div>
     );
   }

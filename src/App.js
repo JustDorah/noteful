@@ -22,10 +22,15 @@ export default class App extends Component {
   };
 
   render() {
+    //get & show notes data
     const dummyNotes = this.state.dummyData.notes;
     console.log(dummyNotes);
-    //console.log(this.state.dummyData, "dummyData");
 
+    //get & show folder data
+    const dummyFolders = this.state.dummyData.folders;
+    console.log(dummyFolders);
+
+    //map notes
     const mainNotes = dummyNotes.map(note => {
       const modified = note.modified;
       const moment = require("moment");
@@ -40,10 +45,21 @@ export default class App extends Component {
         </div>
       );
     });
-    console.log(new Intl.DateTimeFormat("en-US").format(dummyNotes.modified));
+
+    //map folders
+    const mainFolders = dummyFolders.map(folder => {
+      return (
+        <p className="eachFolder" key={folder.id}>
+          <a href="folder.name" key={folder.id}>
+            {folder.name}
+          </a>
+        </p>
+      );
+    });
+
     return (
       <div className="App">
-        <MainPage mainNotes={mainNotes} />
+        <MainPage mainNotes={mainNotes} mainFolders={mainFolders} />
       </div>
     );
   }
