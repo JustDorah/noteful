@@ -42,6 +42,9 @@ export default class App extends Component {
           <h2>{note.name}</h2>
           <p>Modified: {date}</p>
           <p />
+          <div className="removeNoteButton" key={note.id}>
+            Delete Note
+          </div>
         </div>
       );
     });

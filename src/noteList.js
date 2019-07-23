@@ -12,6 +12,8 @@ export default function NoteList(props) {
       </div> */}
 
       <div className="List">{props.mainNotes}</div>
+
+      <div className="nButton">Add note</div>
     </div>
   );
 }

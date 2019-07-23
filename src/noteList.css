@@ -9,3 +9,20 @@
 .eachNote h2 {
   margin: 0;
 }
+
+.eachNote p {
+  display: inline-block;
+}
+
+.removeNoteButton {
+  display: inline-block;
+  border: 1px solid #919191;
+  margin: 2px 2px 2px 130px;
+}
+.nButton {
+  margin: 5px;
+  width: 130px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #919191;
+}
