@@ -1,0 +1,11 @@
+.eachNote {
+  margin: 5px;
+  padding-left: 3px;
+  padding-top: 2px;
+  width: 400px;
+  border: 1px solid #919191;
+}
+
+.eachNote h2 {
+  margin: 0;
+}
