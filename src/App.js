@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import NOTES from "./noteStore";
 import MainPage from "./main";
-//import NoteList from "./noteList";
+import NoteList from "./noteList";
 
 import "./App.css";
-
-//import NoteList from "./noteList";
 
 export default class App extends Component {
   constructor() {
@@ -62,8 +60,13 @@ export default class App extends Component {
 
     return (
       <div className="App">
-        <Route exact path="/" component={MainPage} />
-        {/* <MainPage mainNotes={mainNotes} mainFolders={mainFolders} /> */}
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <MainPage mainNotes={mainNotes} mainFolders={mainFolders} />
+          )}
+        />
       </div>
     );
   }
