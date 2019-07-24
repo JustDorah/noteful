@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import NOTES from "./noteStore";
 import MainPage from "./main";
 //import NoteList from "./noteList";
@@ -62,7 +62,8 @@ export default class App extends Component {
 
     return (
       <div className="App">
-        <MainPage mainNotes={mainNotes} mainFolders={mainFolders} />
+        <Route exact path="/" component={MainPage} />
+        {/* <MainPage mainNotes={mainNotes} mainFolders={mainFolders} /> */}
       </div>
     );
   }

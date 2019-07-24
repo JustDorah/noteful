@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./main.css";
 import NoteList from "./noteList";
 import FolderList from "./folderList";
@@ -10,7 +11,9 @@ export default class MainPage extends Component {
     return (
       <div>
         <header className="mainHeader">
-          <h1>Noteful:main</h1>
+          <h1>
+            <Link to="/">Noteful</Link>
+          </h1>
         </header>
 
         <nav className="sidebar">
