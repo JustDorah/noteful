@@ -7,7 +7,12 @@ import FolderList from "./folderList";
 export default class MainPage extends Component {
   render() {
     //const notes = this.props.notes;
-    // console.log(notes, "the notes");
+    //     // console.log(notes, "the notes");
+    //     console.log(this.props.folderNotes);
+    //     handleFolderClick(){
+
+    // }
+
     return (
       <div>
         <header className="mainHeader">
@@ -17,7 +22,10 @@ export default class MainPage extends Component {
         </header>
 
         <nav className="sidebar">
-          <FolderList mainFolders={this.props.mainFolders} />
+          <FolderList
+            mainFolders={this.props.mainFolders}
+            folderNotes={this.props.folder}
+          />
         </nav>
 
         <main className="main">

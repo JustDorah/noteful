@@ -6,6 +6,7 @@ import MainPage from "./main";
 import NoteList from "./noteList";
 
 import "./App.css";
+import Folder from "./folder";
 
 export default class App extends Component {
   constructor() {
@@ -18,6 +19,10 @@ export default class App extends Component {
   state = {
     addedNotes: [],
     addedFolders: []
+  };
+  handleFolderClick = e => {
+    e.preventDefault();
+    console.log("hi, this was clicked", e.currentTarget);
   };
 
   render() {
@@ -53,14 +58,22 @@ export default class App extends Component {
     //map folders
     const mainFolders = dummyFolders.map(folder => {
       return (
-        <p className="eachFolder" key={folder.id}>
-          {/* <a href="folder.name" key={folder.id}>
-            {folder.name}
-          </a> */}
+        <div
+          className="eachFolder"
+          key={folder.id}
+          onClick={e => this.handleFolderClick(e)}
+        >
           <Link to={`/folder/${folder.id}`}>{folder.name}</Link>{" "}
-        </p>
+        </div>
       );
     });
+
+    /** dummy folder and dummy notes */
+    const folderNotes = dummyFolders.map(fN => {
+      let sameId = dummyNotes.filter(notes => notes.folderId === fN.id);
+      return [fN.id, sameId];
+    });
+    console.log(folderNotes);
 
     return (
       <div className="App">
@@ -68,8 +81,23 @@ export default class App extends Component {
           exact
           path="/"
           render={() => (
-            <MainPage mainNotes={mainNotes} mainFolders={mainFolders} />
+            <MainPage
+              mainNotes={mainNotes}
+              mainFolders={mainFolders}
+              folderNotes={folderNotes}
+            />
           )}
+        />
+        <Route
+          path={`/folder/:folderId`}
+          render={() => (
+            <Folder
+              mainNotes={mainNotes}
+              mainFolders={mainFolders}
+              folderNotes={folderNotes}
+            />
+          )}
+          //component={Folder}
         />
       </div>
     );
