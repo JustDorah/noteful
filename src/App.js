@@ -21,8 +21,8 @@ export default class App extends Component {
     addedFolders: []
   };
   handleFolderClick = e => {
-    e.preventDefault();
-    console.log("hi, this was clicked", e.currentTarget);
+    // e.preventDefault();
+    console.log("hi, this was clicked", e.currentTarget.dataset.div_id);
   };
 
   render() {
@@ -56,12 +56,14 @@ export default class App extends Component {
     });
 
     //map folders
+    //onClick solution from https://ozmoroz.com/2018/07/pass-value-to-onclick-react/
     const mainFolders = dummyFolders.map(folder => {
       return (
         <div
           className="eachFolder"
           key={folder.id}
-          onClick={e => this.handleFolderClick(e)}
+          data-div_id={folder.id}
+          onClick={this.handleFolderClick}
         >
           <Link to={`/folder/${folder.id}`}>{folder.name}</Link>{" "}
         </div>
