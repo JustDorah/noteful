@@ -19,8 +19,7 @@ export default class Folder extends Component {
     //console.log(dummyNotes);
 
     let folderNotes = dummyNotes.filter(notes => notes.folderId === folderId);
-    console.log(folderNotes);
-    //const folderNotes = this.props.folderNotes;
+    //console.log(folderNotes);
 
     //mapping out folderNotes
     const displayFoldersNotes = folderNotes.map(note => {
