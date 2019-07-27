@@ -13,16 +13,32 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      dummyData: NOTES
+      dummyData: NOTES,
+      addedNotes: [],
+      addedFolders: [],
+      color: "",
+      selected: null
     };
   }
 
-  state = {
-    addedNotes: [],
-    addedFolders: []
+  onClickColorHighlight = e => {
+    // e.preventDefault();
+    //console.log("hi, this was clicked", e.currentTarget.dataset.div_id);
+    let clickedFolder = e.currentTarget.dataset.div_id;
+    this.setState({ selected: clickedFolder });
+
+    console.log(clickedFolder, "the folder that has been clicked");
+    // this.state.selected;
+    console.log("this.state.selected: ", this.state.selected);
+    // e.currentTarget.dataset.class = "yellowHighlight";
   };
 
   render() {
+    //classname
+
+    //console.log("this.props.theselected: ", this.props.theselected);
+    //console.log("className: ", className);
+
     //get & show notes data
     const dummyNotes = this.state.dummyData.notes;
     //console.log(dummyNotes);
@@ -54,8 +70,24 @@ export default class App extends Component {
 
     //map folders
     const mainFolders = dummyFolders.map(folder => {
+      let className = this.props.theselected
+        ? "eachFolder selected"
+        : "eachFolder";
+      console.log("this.props.theselected: ", this.props.theselected);
+      console.log("className: ", className);
+      console.log(this.state.selected, "in masdfasdf");
+
+      console.log(folder.id, "olderid");
+
       return (
-        <div className="eachFolder" key={folder.id} data-div_id={folder.id}>
+        <div
+          className={className}
+          key={folder.id}
+          data-div_id={folder.id}
+          style={{ backgroundColor: this.state.color }}
+          onClick={this.onClickColorHighlight}
+          theselected={this.state.selected === folder.id}
+        >
           <Link to={`/folder/${folder.id}`}>{folder.name}</Link>{" "}
         </div>
       );

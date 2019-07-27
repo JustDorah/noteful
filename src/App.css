@@ -1,3 +1,7 @@
 /* .App {
   text-align: justify;
 } */
+
+.eachFolder.yellowHighlight {
+  background-color: aqua;
+}
