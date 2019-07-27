@@ -6,13 +6,6 @@ import FolderList from "./folderList";
 
 export default class MainPage extends Component {
   render() {
-    //const notes = this.props.notes;
-    //     // console.log(notes, "the notes");
-    //     console.log(this.props.folderNotes);
-    //     handleFolderClick(){
-
-    // }
-
     return (
       <div>
         <header className="mainHeader">

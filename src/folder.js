@@ -8,10 +8,40 @@ export default class Folder extends Component {
     onAddFolder: () => {}
   };
 
-  //  displayEachFolder = e => {};
   render() {
-    console.log(this.props.folderNotes, "in folder");
+    //console.log(this.props, "the props");
 
+    //use routerProps to get the folderId and then use to filter notes.
+    let folderId = this.props.routerProps.match.params.folderId;
+    //console.log(folderId, "the folder Id");
+
+    let dummyNotes = this.props.dummyNotes;
+    //console.log(dummyNotes);
+
+    let folderNotes = dummyNotes.filter(notes => notes.folderId === folderId);
+    console.log(folderNotes);
+    //const folderNotes = this.props.folderNotes;
+
+    //mapping out folderNotes
+    const displayFoldersNotes = folderNotes.map(note => {
+      const modified = note.modified;
+      const moment = require("moment");
+      let d1 = moment(modified);
+      let date = d1.format("Do MMM YYYY");
+      //console.log(date);
+      return (
+        <div className="eachNote" key={note.id}>
+          <h2>
+            <Link to={`/note/${note.id}`}>{note.name}</Link>
+          </h2>
+          <p>Date modified on {date}</p>
+          <p />
+          <div className="removeNoteButton" key={note.id}>
+            Delete Note
+          </div>
+        </div>
+      );
+    });
     return (
       <div>
         <header className="mainHeader">
@@ -24,34 +54,8 @@ export default class Folder extends Component {
           <FolderList mainFolders={this.props.mainFolders} />
         </nav>
 
-        <main className="main"> just filling space</main>
+        <main className="main">{displayFoldersNotes}</main>
       </div>
     );
   }
 }
-
-/** 
-   * folders: [
-    {
-      id: "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1",
-      name: "Important"
-    },
-    {
-      id: "b07161a6-ffaf-11e8-8eb2-f2801f1b9fd1",
-      name: "Super"
-    },
-    {
-      id: "b07162f0-ffaf-11e8-8eb2-f2801f1b9fd1",
-      name: "Spangley"
-    }
-  ],
-   */
-// //const notes = props.notes;
-// //console.log(notes, "the notes");
-// return (
-//   <div className="folder">
-//     <div>{/* stuff */}</div>
-
-//     <div className="fButton">{/* stuff */}</div>
-//   </div>
-// );
