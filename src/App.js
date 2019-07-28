@@ -8,6 +8,7 @@ import MainPage from "./main";
 
 import "./App.css";
 import Folder from "./folder";
+import Note from "./note";
 
 export default class App extends Component {
   constructor() {
@@ -16,12 +17,13 @@ export default class App extends Component {
       dummyData: NOTES,
       addedNotes: [],
       addedFolders: [],
-      selected: null
+      selectedFolder: null
     };
   }
 
   onClickColorHighlight = e => {
     //https://www.codementor.io/packt/using-the-link-and-navlink-components-to-navigate-to-a-route-rieqipp42#the-navlink-component
+    //This would have made my live easier in terms of selecting the active folder.
 
     // e.preventDefault();
 
@@ -29,13 +31,15 @@ export default class App extends Component {
 
     //setting selected to the specific folder clicked
     let clickedFolder = e.currentTarget.dataset.div_id;
-    this.setState({ selected: clickedFolder });
+    this.setState({
+      selectedFolder: clickedFolder
+    });
 
     /*
    //shows that I have the correct clickedFolder value
     console.log(clickedFolder, "the folder that has been clicked");
 
-    // this.state.selected - here is shows the previous value of selected. on line 82 or os it shows the current value of selected. why??
+    // this.state.selectedFolder - here is shows the previous value of selected. on line 82 or os it shows the current value of selected. why??
     console.log("this.state.selected: ", this.state.selected);*/
   };
 
@@ -75,7 +79,7 @@ export default class App extends Component {
     const mainFolders = dummyFolders.map(folder => {
       //class
       let className =
-        folder.id === this.state.selected
+        folder.id === this.state.selectedFolder
           ? "eachFolder selected"
           : "eachFolder";
       /*
@@ -114,6 +118,17 @@ export default class App extends Component {
               routerProps={routerProps}
               mainNotes={mainNotes}
               mainFolders={mainFolders}
+              dummyNotes={dummyNotes}
+            />
+          )}
+        />
+        <Route
+          path={`/note/:noteId`}
+          render={routerProps => (
+            <Note
+              routerProps={routerProps}
+              mainNotes={mainNotes}
+              dummyFolders={dummyFolders}
               dummyNotes={dummyNotes}
             />
           )}
