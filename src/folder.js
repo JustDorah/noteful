@@ -53,7 +53,10 @@ export default class Folder extends Component {
           <FolderList mainFolders={this.props.mainFolders} />
         </nav>
 
-        <main className="main">{displayFoldersNotes}</main>
+        <main className="main">
+          {displayFoldersNotes}
+          <div className="nButton">Add note</div>
+        </main>
       </div>
     );
   }

@@ -2,6 +2,12 @@
   text-align: justify;
 } */
 
-.eachFolder.yellowHighlight {
+/* .eachFolder.yellowHighlight,
+.selected {
   background-color: aqua;
+} */
+
+.selected {
+  background-color: aliceblue;
+  /* color: rgb(228, 235, 235); */
 }

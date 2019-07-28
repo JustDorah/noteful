@@ -16,29 +16,30 @@ export default class App extends Component {
       dummyData: NOTES,
       addedNotes: [],
       addedFolders: [],
-      color: "",
       selected: null
     };
   }
 
   onClickColorHighlight = e => {
+    //https://www.codementor.io/packt/using-the-link-and-navlink-components-to-navigate-to-a-route-rieqipp42#the-navlink-component
+
     // e.preventDefault();
+
     //console.log("hi, this was clicked", e.currentTarget.dataset.div_id);
+
+    //setting selected to the specific folder clicked
     let clickedFolder = e.currentTarget.dataset.div_id;
     this.setState({ selected: clickedFolder });
 
+    /*
+   //shows that I have the correct clickedFolder value
     console.log(clickedFolder, "the folder that has been clicked");
-    // this.state.selected;
-    console.log("this.state.selected: ", this.state.selected);
-    // e.currentTarget.dataset.class = "yellowHighlight";
+
+    // this.state.selected - here is shows the previous value of selected. on line 82 or os it shows the current value of selected. why??
+    console.log("this.state.selected: ", this.state.selected);*/
   };
 
   render() {
-    //classname
-
-    //console.log("this.props.theselected: ", this.props.theselected);
-    //console.log("className: ", className);
-
     //get & show notes data
     const dummyNotes = this.state.dummyData.notes;
     //console.log(dummyNotes);
@@ -47,13 +48,15 @@ export default class App extends Component {
     const dummyFolders = this.state.dummyData.folders;
     //console.log(dummyFolders);
 
-    //map notes
+    //map out the notes
     const mainNotes = dummyNotes.map(note => {
+      //format the date - installed momentjs to accomplish
       const modified = note.modified;
       const moment = require("moment");
       let d1 = moment(modified);
       let date = d1.format("Do MMM YYYY");
       //console.log(date, 'the formatted date');
+
       return (
         <div className="eachNote" key={note.id}>
           <h2>
@@ -68,25 +71,27 @@ export default class App extends Component {
       );
     });
 
-    //map folders
+    //map out the folders
     const mainFolders = dummyFolders.map(folder => {
-      let className = this.props.theselected
-        ? "eachFolder selected"
-        : "eachFolder";
-      console.log("this.props.theselected: ", this.props.theselected);
-      console.log("className: ", className);
-      console.log(this.state.selected, "in masdfasdf");
-
-      console.log(folder.id, "olderid");
-
+      //class
+      let className =
+        folder.id === this.state.selected
+          ? "eachFolder selected"
+          : "eachFolder";
+      /*
+      console.log(
+        folder.id + " --now has a className property of-- " + className
+      );
+    
+      //initially shows up as null ( at page refresh), but once clicked shows current value of selected.
+      console.log(this.state.selected, " : value of this.state.selected");
+      */
       return (
         <div
           className={className}
           key={folder.id}
           data-div_id={folder.id}
-          style={{ backgroundColor: this.state.color }}
           onClick={this.onClickColorHighlight}
-          theselected={this.state.selected === folder.id}
         >
           <Link to={`/folder/${folder.id}`}>{folder.name}</Link>{" "}
         </div>
