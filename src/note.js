@@ -5,6 +5,17 @@ import "./folderList.css";
 import "./note.css";
 
 class Note extends Component {
+  constructor(props) {
+    super(props);
+    this.goBack = this.goBack.bind(this);
+  }
+  goBack() {
+    this.props.routerProps.history.goBack();
+  }
+
+  goBack = () => {
+    this.props.routerProps.history.goBack();
+  };
   render() {
     console.log(this.props.routerProps);
 
@@ -32,10 +43,7 @@ class Note extends Component {
       console.log(this.props.history);
       return (
         <div className="List">
-          <button
-            className="backButton"
-            onClick={() => this.routerProps.props.history.goBack()}
-          >
+          <button className="backButton" onClick={this.goBack}>
             Go back
           </button>
 
