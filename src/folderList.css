@@ -5,7 +5,13 @@
   border: 1px solid #919191;
 }
 
-.fButton {
+.selected {
+  background-color: aliceblue;
+  /* color: rgb(228, 235, 235); */
+}
+
+.fButton,
+.backButton {
   margin-left: auto;
   margin-right: auto;
   width: 130px;
@@ -14,6 +20,14 @@
   border: 1px solid #919191;
 }
 
+.backButton {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.List {
+  text-align: center;
+}
 /* .eachNote h2 {
   margin: 0;
 } */

@@ -1,16 +1,20 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 //import NoteList from "./noteList";
-import FolderList from "./folderList";
+import "./folderList.css";
 import "./note.css";
 
-export default class Note extends Component {
+class Note extends Component {
   render() {
     console.log(this.props.routerProps);
 
     let dummyNotes = this.props.dummyNotes;
 
     let dummyFolders = this.props.dummyFolders;
+
+    let goBack = this.props.routerProps.history.goBack;
+    console.log("goBack: ", goBack);
+
     let noteId = this.props.routerProps.match.params.noteId;
     console.log("noteId: ", noteId);
 
@@ -24,15 +28,25 @@ export default class Note extends Component {
     const displayNoteFolder = theNote.map(note => {
       let folder = [];
       folder = dummyFolders.filter(folder => folder.id === note.folderId);
-      console.log("theNoteFolder: ", folder[0]);
-
+      //console.log("theNoteFolder: ", folder[0]);
+      console.log(this.props.history);
       return (
-        <div
-          key={folder[0].id}
-          data-div_id={folder[0].id}
-          onClick={this.onClickColorHighlight}
-        >
-          <Link to={`/folder/${folder[0].id}`}>{folder[0].name}</Link>
+        <div className="List">
+          <button
+            className="backButton"
+            onClick={() => this.routerProps.props.history.goBack()}
+          >
+            Go back
+          </button>
+
+          <div
+            className="eachFolder"
+            key={folder[0].id}
+            data-div_id={folder[0].id}
+            onClick={this.onClickColorHighlight}
+          >
+            <Link to={`/folder/${folder[0].id}`}>{folder[0].name}</Link>
+          </div>
         </div>
       );
     });
@@ -71,12 +85,12 @@ export default class Note extends Component {
           </h1>
         </header>
 
-        <nav className="sidebar">
-          <FolderList aFolder={displayNoteFolder} />
-        </nav>
+        <nav className="sidebar">{displayNoteFolder}</nav>
 
         <main className="main">{displayTheNote}</main>
       </div>
     );
   }
 }
+
+export default withRouter(Note);
