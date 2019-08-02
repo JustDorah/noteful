@@ -5,6 +5,7 @@ const NotefulContext = React.createContext({
   ApiFolder: [],
   ApiNotes: [],
   selectedFolder: null,
+  onClickColorHighlight: () => {},
   deleteNote: () => {}
 });
 
