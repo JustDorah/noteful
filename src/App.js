@@ -24,6 +24,13 @@ export default class App extends Component {
     };
   }
 
+  setSelectedFolder = id => {
+    this.setState({
+      selectedFolder: id
+    });
+  };
+
+  /*
   onClickColorHighlight = e => {
     let clickedFolder = e.currentTarget.dataset.div_id;
 
@@ -33,6 +40,8 @@ export default class App extends Component {
 
     //console.log(clickedFolder, "clicked folder in appJs");
   };
+*/
+
   /**Store fetch response for folders and notes */
 
   setFolder = ApiFolder => {
@@ -93,7 +102,7 @@ export default class App extends Component {
     //get & show folder data
 
     //map out the notes
-
+    console.log(this.state.selectedFolder);
     //map out the folders
 
     const contextValue = {
