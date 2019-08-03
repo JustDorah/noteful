@@ -50,12 +50,14 @@ export default class MainPage extends Component {
       let className =
         folder.id === selectedFolder ? "eachFolder selected" : "eachFolder";
 
+      console.log("selectedFolder: ", selectedFolder);
+
       return (
         <div
           className={className}
           key={folder.id}
           data-div_id={folder.id}
-          onClick={this.onClickColorHighlight}
+          onClick={this.context.onClickColorHighlight}
         >
           <Link to={`/folder/${folder.id}`}>{folder.name}</Link>{" "}
         </div>
@@ -74,7 +76,7 @@ export default class MainPage extends Component {
         <nav className="sidebar">
           <FolderList
             mainFolders={mainFolders}
-            folderNotes={this.props.folder}
+            //folderNotes={this.props.folder}
           />
         </nav>
 

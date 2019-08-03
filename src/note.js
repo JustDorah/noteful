@@ -21,21 +21,21 @@ class Note extends Component {
     this.props.history.goBack();
   };
   render() {
-    const { ApiFolder, ApiNotes, selectedFolder } = this.context;
+    const { ApiFolder, ApiNotes } = this.context;
     //console.log("mainPage ApiNotes: ", ApiNotes);
     //console.log("mainPage ApiFolder: ", ApiFolder);
 
-    console.log(this.props, "noteId");
+    console.log(this.props, "in note.js");
 
     let noteId = this.props.match.params.noteId;
-    console.log("noteId: ", noteId);
+    //console.log("noteId: ", noteId);
 
     //get & display the note
     //*********************** */
     //CONSOLE WARNING... each child should have a unique 'key' prop...how to fix?
     //*********** */
     let theNote = ApiNotes.filter(note => note.id === noteId);
-    console.log("theNote: ", theNote);
+    //console.log("theNote: ", theNote);
 
     const displayTheNote = theNote.map(note => {
       const modified = note.modified;
@@ -64,13 +64,11 @@ class Note extends Component {
     });
 
     //get and display theNote's folder
-    //let theNoteFolder = dummyFolders.filter(folder => folder.id === folderId);
-    //console.log("theNoteFolder: ", theNoteFolder);
     const displayNoteFolder = theNote.map(note => {
       let folder = [];
       folder = ApiFolder.filter(folder => folder.id === note.folderId);
       //console.log("theNoteFolder: ", folder[0]);
-      console.log(this.props.history);
+      //console.log(this.props.history);
       return (
         <div className="List">
           <button className="backButton" onClick={this.goBack}>
@@ -89,6 +87,7 @@ class Note extends Component {
       );
     });
 
+    //seeing how to reach/get the go back function
     let goBack = this.props.history.goBack;
     console.log("goBack: ", goBack);
 

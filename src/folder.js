@@ -1,27 +1,35 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import FolderList from "./folderList";
+//import FolderList from "./folderList";
+import NotefulContext from "./NotefulContext";
 import "./folder.css";
+import MainPage from "./mainPage";
 
 export default class Folder extends Component {
+  //reason for this again?
   static defaultProps = {
-    onAddFolder: () => {}
+    ApiFolder: [],
+    ApiNotes: [],
+    selectedFolder: ""
   };
 
+  //reason for this?
+  static contextType = NotefulContext;
   render() {
-    //console.log(this.props, "the props");
+    const { ApiNotes } = this.context;
+    //console.log("mainPage ApiNotes: ", ApiNotes);
+    //console.log("mainPage ApiFolder: ", ApiFolder);
 
-    //use routerProps to get the folderId and then use to filter notes.
-    let folderId = this.props.routerProps.match.params.folderId;
-    //console.log(folderId, "the folder Id");
+    console.log(this.props, "the props in folder.js");
 
-    let dummyNotes = this.props.dummyNotes;
-    //console.log(dummyNotes);
+    //use props to get the folderId and then use to filter notes.
+    let folderId = this.props.match.params.folderId;
+    console.log(folderId, "the folder Id (folderJs)");
 
-    let folderNotes = dummyNotes.filter(notes => notes.folderId === folderId);
-    //console.log(folderNotes);
+    let folderNotes = ApiNotes.filter(notes => notes.folderId === folderId);
+    console.log("folderNotes folderJs", folderNotes);
 
-    //mapping out folderNotes
+    //mapping out and display folderNotes
     const displayFoldersNotes = folderNotes.map(note => {
       const modified = note.modified;
       const moment = require("moment");
@@ -41,6 +49,7 @@ export default class Folder extends Component {
         </div>
       );
     });
+
     return (
       <div>
         <header className="mainHeader">
@@ -50,7 +59,7 @@ export default class Folder extends Component {
         </header>
 
         <nav className="sidebar">
-          <FolderList mainFolders={this.props.mainFolders} />
+          <MainPage />
         </nav>
 
         <main className="main">

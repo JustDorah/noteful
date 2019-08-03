@@ -9,7 +9,7 @@ import MainPage from "./mainPage";
 import config from "./config";
 
 import "./App.css";
-//import Folder from "./folder";
+import Folder from "./folder";
 import Note from "./note";
 
 export default class App extends Component {
@@ -29,6 +29,7 @@ export default class App extends Component {
     this.setState({
       selectedFolder: clickedFolder
     });
+    console.log(clickedFolder, "clciked folder in appJs");
   };
   /**Store fetch response for folders and notes */
 
@@ -111,18 +112,18 @@ export default class App extends Component {
             // )}
             component={MainPage}
           />
-          {/* <Route
+          <Route
             path={`/folder/:folderId`}
-            render={routerProps => (
-              <Folder
-                routerProps={routerProps}
-                mainNotes={mainNotes}
-                mainFolders={mainFolders}
-                dummyNotes={dummyNotes}
-              />
-            )} 
+            // render={routerProps => (
+            //   <Folder
+            //     routerProps={routerProps}
+            //     mainNotes={mainNotes}
+            //     mainFolders={mainFolders}
+            //     dummyNotes={dummyNotes}
+            //   />
+            // )}
             component={Folder}
-          />*/}
+          />
           <Route
             path={`/note/:noteId`}
             // render={routerProps => (
