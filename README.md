@@ -9,6 +9,8 @@ In the project directory, you can run:
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+You'll also need to use a local server to run this app. You can find it at [https://github.com/tomatau/noteful-json-server/](https://github.com/tomatau/noteful-json-server/)
+
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
