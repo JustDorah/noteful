@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./main.css";
 import NoteList from "./noteList";
-import FolderList from "./folderList";
 import NotefulContext from "./NotefulContext";
 
 export default class MainPage extends Component {
@@ -30,7 +29,12 @@ export default class MainPage extends Component {
   render() {
     // console.log("selectedFolder: ", this.state.selectedFolder);
 
-    const { ApiFolder, ApiNotes, selectedFolder } = this.context;
+    const {
+      ApiFolder,
+      ApiNotes,
+      selectedFolder,
+      setSelectedFolder
+    } = this.context;
     //console.log("mainPage ApiNotes: ", ApiNotes);
     //console.log("mainPage ApiFolder: ", ApiFolder);
 
@@ -115,7 +119,7 @@ export default class MainPage extends Component {
                     //maybe I need to call something else?
                     //onClick={this.onClickColorHighlight}
 
-                    onClick={e => context.setSelectedFolder(folder.id)}
+                    onClick={e => setSelectedFolder(folder.id)}
                   >
                     <Link to={`/folder/${folder.id}`}>{folder.name}</Link>
                   </div>

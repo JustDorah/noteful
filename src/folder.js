@@ -1,19 +1,17 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-//import FolderList from "./folderList";
 import NotefulContext from "./NotefulContext";
-import "./folder.css";
 import MainPage from "./mainPage";
 
+import "./folder.css";
+
 export default class Folder extends Component {
-  //reason for this again?
   static defaultProps = {
     ApiFolder: [],
     ApiNotes: [],
     selectedFolder: ""
   };
 
-  //reason for this?
   static contextType = NotefulContext;
   render() {
     const { ApiNotes } = this.context;
