@@ -57,9 +57,10 @@ export default class MainPage extends Component {
           className={className}
           key={folder.id}
           data-div_id={folder.id}
-          onClick={this.context.onClickColorHighlight}
+          //maybe I need to call something else?
+          onClick={e => this.onClickColorHighlight()}
         >
-          <Link to={`/folder/${folder.id}`}>{folder.name}</Link>{" "}
+          <Link to={`/folder/${folder.id}`}>{folder.name}</Link>
         </div>
       );
     });

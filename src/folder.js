@@ -20,14 +20,14 @@ export default class Folder extends Component {
     //console.log("mainPage ApiNotes: ", ApiNotes);
     //console.log("mainPage ApiFolder: ", ApiFolder);
 
-    console.log(this.props, "the props in folder.js");
+    // console.log(this.props, "the props in folder.js");
 
     //use props to get the folderId and then use to filter notes.
     let folderId = this.props.match.params.folderId;
-    console.log(folderId, "the folder Id (folderJs)");
+    //console.log(folderId, "the folder Id (folderJs)");
 
     let folderNotes = ApiNotes.filter(notes => notes.folderId === folderId);
-    console.log("folderNotes folderJs", folderNotes);
+    // console.log("folderNotes folderJs", folderNotes);
 
     //mapping out and display folderNotes
     const displayFoldersNotes = folderNotes.map(note => {

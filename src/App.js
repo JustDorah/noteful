@@ -26,10 +26,12 @@ export default class App extends Component {
 
   onClickColorHighlight = e => {
     let clickedFolder = e.currentTarget.dataset.div_id;
+
     this.setState({
       selectedFolder: clickedFolder
     });
-    console.log(clickedFolder, "clciked folder in appJs");
+
+    //console.log(clickedFolder, "clicked folder in appJs");
   };
   /**Store fetch response for folders and notes */
 
@@ -46,7 +48,7 @@ export default class App extends Component {
       ApiNotes,
       error: null
     });
-    console.log(ApiNotes, "APP ApiNotes");
+    //console.log(ApiNotes, "APP ApiNotes");
   };
 
   /**Get/Fetch folders and notes */
