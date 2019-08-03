@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 //import { Route, Switch } from "react-router-dom";
 import { Route } from "react-router-dom";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import NotefulContext from "./NotefulContext";
 //import NOTES from "./noteStore";
 import MainPage from "./mainPage";
@@ -10,7 +10,7 @@ import config from "./config";
 
 import "./App.css";
 //import Folder from "./folder";
-//import Note from "./note";
+import Note from "./note";
 
 export default class App extends Component {
   constructor() {
@@ -123,18 +123,18 @@ export default class App extends Component {
             )} 
             component={Folder}
           />*/}
-          {/* <Route
+          <Route
             path={`/note/:noteId`}
-            render={routerProps => (
-              <Note
-                routerProps={routerProps}
-                mainNotes={mainNotes}
-                dummyFolders={dummyFolders}
-                dummyNotes={dummyNotes}
-              />
-            )}
+            // render={routerProps => (
+            //   <Note
+            //     routerProps={routerProps}
+            //     mainNotes={mainNotes}
+            //     dummyFolders={dummyFolders}
+            //     dummyNotes={dummyNotes}
+            //   />
+            // )}
             component={Note}
-          /> */}
+          />
         </div>
       </NotefulContext.Provider>
     );

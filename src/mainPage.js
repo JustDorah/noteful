@@ -18,8 +18,8 @@ export default class MainPage extends Component {
 
   render() {
     const { ApiFolder, ApiNotes, selectedFolder } = this.context;
-    console.log("mainPage ApiNotes: ", ApiNotes);
-    console.log("mainPage ApiFolder: ", ApiFolder);
+    //console.log("mainPage ApiNotes: ", ApiNotes);
+    //console.log("mainPage ApiFolder: ", ApiFolder);
 
     //map out the notes
     const mainNotes = ApiNotes.map(note => {

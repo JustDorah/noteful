@@ -1,63 +1,41 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 //import NoteList from "./noteList";
 import "./folderList.css";
 import "./note.css";
+import NotefulContext from "./NotefulContext";
 
 class Note extends Component {
-  constructor(props) {
-    super(props);
-    this.goBack = this.goBack.bind(this);
-  }
-  goBack() {
-    this.props.routerProps.history.goBack();
-  }
+  //reason for this again?
+  static defaultProps = {
+    ApiFolder: [],
+    ApiNotes: [],
+    selectedFolder: ""
+  };
 
+  //reason for this?
+  static contextType = NotefulContext;
+
+  //in app back button
   goBack = () => {
-    this.props.routerProps.history.goBack();
+    this.props.history.goBack();
   };
   render() {
-    console.log(this.props.routerProps);
+    const { ApiFolder, ApiNotes, selectedFolder } = this.context;
+    //console.log("mainPage ApiNotes: ", ApiNotes);
+    //console.log("mainPage ApiFolder: ", ApiFolder);
 
-    let dummyNotes = this.props.dummyNotes;
+    console.log(this.props, "noteId");
 
-    let dummyFolders = this.props.dummyFolders;
-
-    let goBack = this.props.routerProps.history.goBack;
-    console.log("goBack: ", goBack);
-
-    let noteId = this.props.routerProps.match.params.noteId;
+    let noteId = this.props.match.params.noteId;
     console.log("noteId: ", noteId);
 
-    let theNote = dummyNotes.filter(note => note.id === noteId);
+    //get & display the note
+    //*********************** */
+    //CONSOLE WARNING... each child should have a unique 'key' prop...how to fix?
+    //*********** */
+    let theNote = ApiNotes.filter(note => note.id === noteId);
     console.log("theNote: ", theNote);
-
-    //get and display theNote's folder
-    //let theNoteFolder = dummyFolders.filter(folder => folder.id === folderId);
-    //console.log("theNoteFolder: ", theNoteFolder);
-
-    const displayNoteFolder = theNote.map(note => {
-      let folder = [];
-      folder = dummyFolders.filter(folder => folder.id === note.folderId);
-      //console.log("theNoteFolder: ", folder[0]);
-      console.log(this.props.history);
-      return (
-        <div className="List">
-          <button className="backButton" onClick={this.goBack}>
-            Go back
-          </button>
-
-          <div
-            className="eachFolder"
-            key={folder[0].id}
-            data-div_id={folder[0].id}
-            onClick={this.onClickColorHighlight}
-          >
-            <Link to={`/folder/${folder[0].id}`}>{folder[0].name}</Link>
-          </div>
-        </div>
-      );
-    });
 
     const displayTheNote = theNote.map(note => {
       const modified = note.modified;
@@ -85,6 +63,35 @@ class Note extends Component {
       );
     });
 
+    //get and display theNote's folder
+    //let theNoteFolder = dummyFolders.filter(folder => folder.id === folderId);
+    //console.log("theNoteFolder: ", theNoteFolder);
+    const displayNoteFolder = theNote.map(note => {
+      let folder = [];
+      folder = ApiFolder.filter(folder => folder.id === note.folderId);
+      //console.log("theNoteFolder: ", folder[0]);
+      console.log(this.props.history);
+      return (
+        <div className="List">
+          <button className="backButton" onClick={this.goBack}>
+            Go back
+          </button>
+
+          <div
+            className="eachFolder"
+            key={folder[0].id}
+            data-div_id={folder[0].id}
+            onClick={this.onClickColorHighlight}
+          >
+            <Link to={`/folder/${folder[0].id}`}>{folder[0].name}</Link>
+          </div>
+        </div>
+      );
+    });
+
+    let goBack = this.props.history.goBack;
+    console.log("goBack: ", goBack);
+
     return (
       <div>
         <header className="mainHeader">
@@ -101,4 +108,4 @@ class Note extends Component {
   }
 }
 
-export default withRouter(Note);
+export default Note;

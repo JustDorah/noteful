@@ -1,6 +1,8 @@
 import React from "react";
-import "./folderList.css";
 import NotefulContext from "./NotefulContext";
+
+import "./folderList.css";
+
 //import Folder from "./folder";
 
 export default function FolderList(props) {
