@@ -1,16 +1,47 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-//import NoteList from "./noteList";
+import NotefulContext from "./NotefulContext";
+import config from "./config";
 import "./folderList.css";
 import "./note.css";
-import NotefulContext from "./NotefulContext";
 
+/**function to delete a note */
+function deleteNoteRequest(noteId, callback) {
+  console.log(noteId);
+
+  fetch(config.API_NOTES, {
+    method: "DELETE",
+    headers: {
+      "content-type": "application/json"
+    }
+  })
+    .then(res => {
+      if (!res.ok) {
+        // get the error message from the response,
+        return res.json().then(error => {
+          // then throw it
+          throw error;
+        });
+      }
+      return res.json();
+    })
+    .then(data => {
+      console.log({ data });
+      // call the callback when the request is successful
+      // this is where the App component can remove it from state
+      callback(noteId);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
 class Note extends Component {
   //reason for this again?
   static defaultProps = {
     ApiFolder: [],
     ApiNotes: [],
-    selectedFolder: ""
+    selectedFolder: "",
+    deleteNote: () => {}
   };
 
   //reason for this?
@@ -25,7 +56,8 @@ class Note extends Component {
     //console.log("mainPage ApiNotes: ", ApiNotes);
     //console.log("mainPage ApiFolder: ", ApiFolder);
 
-    console.log(this.props, "in note.js");
+    /**IT RENDERS 3TIMES why? */
+    //console.log(this.props, "in note.js");
 
     let noteId = this.props.match.params.noteId;
     //console.log("noteId: ", noteId);
@@ -36,7 +68,7 @@ class Note extends Component {
     //*********** */
     let theNote = ApiNotes.filter(note => note.id === noteId);
     //console.log("theNote: ", theNote);
-
+    /*
     const displayTheNote = theNote.map(note => {
       const modified = note.modified;
       const moment = require("moment");
@@ -52,9 +84,16 @@ class Note extends Component {
             </h2>
             <p>Date modified on {date}</p>
             <p />
-            <div className="removeNoteButton" key={note.id}>
+            {/* <div className="removeNoteButton" key={note.id}>
               Delete Note
-            </div>
+            </div> *}
+            <button
+              className="removeNoteButton"
+              key={note.id}
+              onClick={() => deleteNoteRequest(props.id, context.delete)}
+            >
+              Delete Note
+            </button>
           </div>
           <div className={note.name} key={note.id}>
             {note.content}
@@ -62,7 +101,7 @@ class Note extends Component {
         </div>
       );
     });
-
+*/
     //get and display theNote's folder
     const displayNoteFolder = theNote.map(note => {
       let folder = [];
@@ -88,21 +127,60 @@ class Note extends Component {
     });
 
     //seeing how to reach/get the go back function
-    let goBack = this.props.history.goBack;
-    console.log("goBack: ", goBack);
+    //let goBack = this.props.history.goBack;
+    //console.log("goBack: ", goBack);
 
     return (
-      <div>
-        <header className="mainHeader">
-          <h1>
-            <Link to="/">Noteful</Link>
-          </h1>
-        </header>
+      <NotefulContext.Consumer>
+        {context => (
+          <div>
+            <header className="mainHeader">
+              <h1>
+                <Link to="/">Noteful</Link>
+              </h1>
+            </header>
 
-        <nav className="sidebar">{displayNoteFolder}</nav>
+            <nav className="sidebar">{displayNoteFolder}</nav>
 
-        <main className="main">{displayTheNote}</main>
-      </div>
+            <main className="main">
+              {theNote.map(note => {
+                const modified = note.modified;
+                const moment = require("moment");
+                let d1 = moment(modified);
+                let date = d1.format("Do MMM YYYY");
+                //console.log(date);
+
+                return (
+                  <div>
+                    <div className="eachNote" key={note.id}>
+                      <h2>
+                        <Link to={`/note/${note.id}`}>{note.name}</Link>
+                      </h2>
+                      <p>Date modified on {date}</p>
+                      <p />
+                      {/* <div className="removeNoteButton" key={note.id}>
+              Delete Note
+            </div> */}
+                      <button
+                        className="removeNoteButton"
+                        key={note.id}
+                        onClick={() =>
+                          deleteNoteRequest(note.id, context.deleteNote)
+                        }
+                      >
+                        Delete Note
+                      </button>
+                    </div>
+                    <div className={note.name} key={note.id}>
+                      {note.content}
+                    </div>
+                  </div>
+                );
+              })}
+            </main>
+          </div>
+        )}
+      </NotefulContext.Consumer>
     );
   }
 }

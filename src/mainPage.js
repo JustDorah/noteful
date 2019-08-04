@@ -16,19 +16,7 @@ export default class MainPage extends Component {
   //reason for this?
   static contextType = NotefulContext;
 
-  // onClickColorHighlight = id => {
-  //   console.log(id);
-
-  //   let clickedFolder = id;
-  //   this.setState({
-  //     selectedFolder: clickedFolder
-  //   });
-  // };
-
-  //console.log('onClickColorHighlight: ', onClickColorHighlight);
   render() {
-    // console.log("selectedFolder: ", this.state.selectedFolder);
-
     const {
       ApiFolder,
       ApiNotes,
@@ -61,36 +49,6 @@ export default class MainPage extends Component {
       );
     });
 
-    /*
-    //map out the folders
-    const mainFolders = ApiFolder.map(folder => {
-      //class
-      let className =
-        folder.id === this.context.selectedFolder
-          ? "eachFolder selected"
-          : "eachFolder";
-
-      console.log("selectedFolder: ", selectedFolder);
-
-      return (
-        <div
-          className={className}
-          key={folder.id}
-          data-div_id={folder.id}
-          //maybe I need to call something else?
-          //onClick={this.onClickColorHighlight}
-
-          onClick={e => this.onClickColorHighlight(folder.id)}
-        >
-          <Link to={`/folder/${folder.id}`}>{folder.name}</Link>
-        </div>
-      );
-    });
-*/
-    //console.log("mainPage mainFolders", mainFolders);
-
-    //console.log("mainPage mainNotes", mainNotes);
-
     return (
       <NotefulContext.Consumer>
         {context => (
@@ -116,20 +74,12 @@ export default class MainPage extends Component {
                     className={className}
                     key={folder.id}
                     data-div_id={folder.id}
-                    //maybe I need to call something else?
-                    //onClick={this.onClickColorHighlight}
-
                     onClick={e => setSelectedFolder(folder.id)}
                   >
                     <Link to={`/folder/${folder.id}`}>{folder.name}</Link>
                   </div>
                 );
               })}
-
-              {/* <FolderList
-                mainFolders={mainFolders}
-                //folderNotes={this.props.folder}
-              /> */}
             </nav>
 
             <main className="main">

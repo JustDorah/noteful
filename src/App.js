@@ -25,6 +25,7 @@ export default class App extends Component {
       selectedFolder: id
     });
   };
+  /**Implement delete button */
 
   /**Store fetch response for folders and notes */
 
@@ -33,7 +34,7 @@ export default class App extends Component {
       ApiFolder,
       error: null
     });
-    console.log(ApiFolder, "APP ApiFolder");
+    //console.log(ApiFolder, "APP ApiFolder");
   };
 
   setNote = ApiNotes => {
@@ -42,6 +43,12 @@ export default class App extends Component {
       error: null
     });
     //console.log(ApiNotes, "APP ApiNotes");
+  };
+  deleteNote = noteId => {
+    console.log("noteID in App", noteId);
+    const newNotes = this.setState.ApiNotes.filter(n => n.id !== noteId);
+    this.setState({ ApiNotes: newNotes });
+    console.log(newNotes, "noteID");
   };
 
   /**Get/Fetch folders and notes */
@@ -80,7 +87,7 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state.selectedFolder);
+    //console.log(this.state.selectedFolder);
     //map out the folders
 
     const contextValue = {
@@ -88,7 +95,8 @@ export default class App extends Component {
       ApiFolder: this.state.ApiFolder,
       ApiNotes: this.state.ApiNotes,
       selectedFolder: this.state.selectedFolder,
-      setSelectedFolder: this.setSelectedFolder
+      setSelectedFolder: this.setSelectedFolder,
+      deleteNote: this.deleteNote
     };
 
     return (
