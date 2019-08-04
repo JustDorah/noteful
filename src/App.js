@@ -96,7 +96,8 @@ export default class App extends Component {
       ApiNotes: this.state.ApiNotes,
       selectedFolder: this.state.selectedFolder,
       setSelectedFolder: this.setSelectedFolder,
-      deleteNote: this.deleteNote
+      deleteNote: this.deleteNote,
+      onDelete: this.onDelete
     };
 
     return (
