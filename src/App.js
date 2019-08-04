@@ -46,7 +46,7 @@ export default class App extends Component {
   };
   deleteNote = noteId => {
     console.log("noteID in App", noteId);
-    const newNotes = this.setState.ApiNotes.filter(n => n.id !== noteId);
+    const newNotes = this.state.ApiNotes.filter(n => n.id !== noteId);
     this.setState({ ApiNotes: newNotes });
     console.log(newNotes, "noteID");
   };

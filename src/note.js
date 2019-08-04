@@ -9,7 +9,7 @@ import "./note.css";
 function deleteNoteRequest(noteId, callback) {
   console.log(noteId);
 
-  fetch(config.API_NOTES, {
+  fetch(config.API_NOTES + `/${noteId}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json"
@@ -165,7 +165,7 @@ class Note extends Component {
                         className="removeNoteButton"
                         key={note.id}
                         onClick={() =>
-                          deleteNoteRequest(note.id, context.deleteNote)
+                          deleteNoteRequest(note.id, this.context.deleteNote)
                         }
                       >
                         Delete Note
