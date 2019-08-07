@@ -78,22 +78,26 @@ export default class AddFolder extends Component {
           className="addFolder_form"
           onSubmit={e => this.handleNewFolder(e)}
         >
-          <div className="addFolder__hint">* required field</div>
-          <br />
+          {/* <div className="addFolder__hint">* required field</div>
+          <br /> */}
           <div className="form-group">
-            <label htmlFor="folderName">Title *</label>
+            <label htmlFor="folderName">
+              Please Enter the Name of the folder below:
+            </label>
             <input
               type="text"
               className="addFolder_text"
               name="folderName"
               id="Foldername"
-              defaultValue="Interesting"
+              //defaultValue="Interesting"
               ref={this.folderNameInput}
               onChange={e => this.updateNewFolder(e.target.value)}
             />
-            {this.state.newFolder.touched && (
-              <ValidationError message={nameError} />
-            )}
+            <div className="errorMessage">
+              {this.state.newFolder.touched && (
+                <ValidationError message={nameError} />
+              )}
+            </div>
           </div>
           <br />
           <div className="addFolder__button__group">
@@ -104,7 +108,11 @@ export default class AddFolder extends Component {
             >
               Cancel
             </button>
-            <button type="submit" className="addFolder_saveBtn">
+            <button
+              type="submit"
+              className="addFolder_saveBtn"
+              disabled={this.validateFolderName()}
+            >
               Save
             </button>
           </div>

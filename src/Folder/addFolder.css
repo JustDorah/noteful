@@ -24,11 +24,16 @@
   margin-right: 10px;
 }
 
-.addFolder__hint {
-  color: #a51414;
+.addFolder__hint,
+.errorMessage {
+  /* color: #a51414; */
+  color: wheat;
+  background-color: #a51414;
+  width: 300px;
 }
 
-.AddBookmark__error p {
+/* .AddBookmark__error p { 
   color: #a51414;
   margin-bottom: 5px;
 }
+*/

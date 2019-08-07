@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "./main.css";
 import NoteList from "./noteList";
 import NotefulContext from "./NotefulContext";
 import AddFolder from "./Folder/addFolder";
 
-export default class MainPage extends Component {
+class MainPage extends Component {
   //reason for this again?
   static defaultProps = {
     ApiFolder: [],
@@ -89,7 +89,7 @@ export default class MainPage extends Component {
                 className="addFolderBtn"
                 onClick={this.handleAddFolderButton}
               >
-                AddFolder
+                Add folder
               </button>
             </nav>
 
@@ -102,3 +102,5 @@ export default class MainPage extends Component {
     );
   }
 }
+
+export default withRouter(MainPage);
