@@ -7,6 +7,7 @@ import Folder from "./folder";
 import Note from "./note";
 
 import "./App.css";
+import AddFolder from "./Folder/addFolder";
 
 export default class App extends Component {
   constructor() {
@@ -49,6 +50,13 @@ export default class App extends Component {
     const newNotes = this.state.ApiNotes.filter(n => n.id !== noteId);
     this.setState({ ApiNotes: newNotes });
     console.log(newNotes, "noteID");
+  };
+
+  //New folder
+  addFolder = ApiFolder => {
+    this.setState({
+      ApiFolder: [...this.state.ApiFolder, ApiFolder]
+    });
   };
 
   /**Get/Fetch folders and notes */
@@ -97,7 +105,8 @@ export default class App extends Component {
       selectedFolder: this.state.selectedFolder,
       setSelectedFolder: this.setSelectedFolder,
       deleteNote: this.deleteNote,
-      onDelete: this.onDelete
+      onDelete: this.onDelete,
+      addFolder: this.addFolder
     };
 
     return (
@@ -106,6 +115,7 @@ export default class App extends Component {
           <Route exact path="/" component={MainPage} />
           <Route path={`/folder/:folderId`} component={Folder} />
           <Route path={`/note/:noteId`} component={Note} />
+          <Route path={`/addFolder`} component={AddFolder} />
         </div>
       </NotefulContext.Provider>
     );

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./main.css";
 import NoteList from "./noteList";
 import NotefulContext from "./NotefulContext";
+import AddFolder from "./Folder/addFolder";
 
 export default class MainPage extends Component {
   //reason for this again?
@@ -10,12 +11,16 @@ export default class MainPage extends Component {
     ApiFolder: [],
     ApiNotes: [],
     selectedFolder: "eachFolder",
-    setSelectedFolder: () => {}
+    setSelectedFolder: () => {},
+    addFolder: () => {}
   };
 
   //reason for this?
   static contextType = NotefulContext;
-
+  handleAddFolderButton = () => {
+    //console.log(this.props.history.push("/addFolder"));
+    this.props.history.push("/addFolder");
+  };
   render() {
     const {
       ApiFolder,
@@ -80,6 +85,12 @@ export default class MainPage extends Component {
                   </div>
                 );
               })}
+              <button
+                className="addFolderBtn"
+                onClick={this.handleAddFolderButton}
+              >
+                AddFolder
+              </button>
             </nav>
 
             <main className="main">

@@ -7,7 +7,8 @@ const NotefulContext = React.createContext({
   selectedFolder: null,
   setSelectedFolder: () => {},
   deleteNote: () => {},
-  onDelete: () => {}
+  onDelete: () => {},
+  addFolder: () => {}
 });
 
 export default NotefulContext;
