@@ -24,7 +24,8 @@ export default class AddFolder extends Component {
     e.preventDefault();
     //let { folderName } = e.target;
     // console.log(folderName.value);
-    const title = this.folderNameInput.current.value;
+    //const title = this.folderNameInput.current.value;
+    const title = { folderName: this.folderNameInput.current.value };
     console.log("title: ", title);
 
     fetch(config.API_FOLDERS, {

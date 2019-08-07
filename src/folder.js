@@ -9,12 +9,16 @@ export default class Folder extends Component {
   static defaultProps = {
     ApiFolder: [],
     ApiNotes: [],
-    selectedFolder: ""
+    selectedFolder: "",
+    addFolder: () => {}
   };
 
   static contextType = NotefulContext;
   render() {
     const { ApiNotes } = this.context;
+
+    //weird....
+    //console.log(this.props.history.push("/addFolder"));
     //console.log("mainPage ApiNotes: ", ApiNotes);
     //console.log("mainPage ApiFolder: ", ApiFolder);
 
