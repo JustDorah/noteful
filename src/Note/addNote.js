@@ -10,6 +10,8 @@ export default class AddNote extends Component {
   constructor(props) {
     super(props);
     this.noteNameInput = React.createRef();
+    this.noteContentInput = React.createRef();
+    this.noteFolderSelect = React.createRef();
     this.state = {
       newNote: {
         value: "",
@@ -29,14 +31,17 @@ export default class AddNote extends Component {
   static contextType = NotefulContext;
 
   //POST new note
-  handleNewFolder = e => {
+  handleNewNote = e => {
     e.preventDefault();
+
+    //console.log("noteContent: ", noteContent);
     const moment = require("moment");
+    //using refs to get input info
     const title = {
       name: this.noteNameInput.current.value,
       modified: moment().format("Do MMM YYYY"),
-      folderId: this.noteNameInput.current.value,
-      content: this.noteNameInput.current.value
+      folderId: this.noteFolderSelect.current.value,
+      content: this.noteContentInput.current.value
     };
     console.log("title(note): ", title);
 
@@ -59,7 +64,22 @@ export default class AddNote extends Component {
       })
       .catch(e => this.setState({ APIError: e.message }));
   };
-
+  updateNewNote(newName) {
+    this.setState({
+      newNote: { value: newName, touched: true }
+    });
+  }
+  //Make sure note has a name, that it isn't blank
+  validateNoteName(newName) {
+    //trim() method removes whitespace from both ends of a string
+    newName = this.state.newNote.value.trim();
+    if (newName.length === 0) {
+      return "Name is required";
+    }
+  }
+  handleCancelButton = () => {
+    this.props.history.push("/");
+  };
   render() {
     // const { ApiFolder, ApiNotes } = this.context;
     //const nameError = this.validateFolderName();
@@ -67,15 +87,12 @@ export default class AddNote extends Component {
       <option value={folder.id}>{folder.name}</option>
     ));
     // console.log(folder);
+
+    const nameError = this.validateNoteName();
     return (
       <div className="addFolder">
         <h2>Create a folder</h2>
-        <form
-          className="addFolder_form"
-          onSubmit={e => this.handleNewFolder(e)}
-        >
-          {/* <div className="addFolder__hint">* required field</div>
-          <br /> */}
+        <form className="addFolder_form" onSubmit={e => this.handleNewNote(e)}>
           <div className="form-group">
             <label htmlFor="noteName">
               Please Enter the Name of the note below:
@@ -86,15 +103,14 @@ export default class AddNote extends Component {
               className="addNote_text"
               name="noteName"
               id="noteName"
-              //defaultValue="Interesting"
               ref={this.noteNameInput}
-              onChange={e => this.updateNewNoteName(e.target.value)}
+              onChange={e => this.updateNewNote(e.target.value)}
             />
-            {/* <div className="errorMessage">
-              {this.state.newFolder.touched && (
+            <div className="errorMessage">
+              {this.state.newNote.touched && (
                 <ValidationError message={nameError} />
               )}
-            </div> */}
+            </div>
             <label htmlFor="noteContent">
               Please Enter the Name of the note below:
             </label>
@@ -107,7 +123,7 @@ export default class AddNote extends Component {
               id="noteContent"
               //defaultValue="Interesting"
               ref={this.noteContentInput}
-              onChange={e => this.updateNewNoteContent(e.target.value)}
+              // onChange={e => this.updateNewNoteContent(e.target.value)}
             />
             {/* <div className="errorMessage">
               {this.state.newFolder.touched && (
@@ -121,8 +137,9 @@ export default class AddNote extends Component {
               className="selectNoteFolder"
               name="noteFolder"
               id="noteFolder"
+              ref={this.noteFolderSelect}
               required
-              onChange={e => this.folderChanged(e.target.value)}
+              // onChange={e => this.folderChanged(e.target.value)}
             >
               <option value="">Select a folder...</option>
               {folder}
@@ -145,7 +162,7 @@ export default class AddNote extends Component {
             <button
               type="submit"
               className="addFolder_saveBtn"
-              // disabled={this.validateFolderName()}
+              disabled={this.validateNoteName()}
             >
               Save
             </button>
