@@ -8,6 +8,7 @@ import Note from "./note";
 
 import "./App.css";
 import AddFolder from "./Folder/addFolder";
+import AddNote from "./Note/addNote";
 
 export default class App extends Component {
   constructor() {
@@ -116,6 +117,7 @@ export default class App extends Component {
           <Route path={`/folder/:folderId`} component={Folder} />
           <Route path={`/note/:noteId`} component={Note} />
           <Route path={`/addFolder`} component={AddFolder} />
+          <Route path={`/addNote`} component={AddNote} />
         </div>
       </NotefulContext.Provider>
     );

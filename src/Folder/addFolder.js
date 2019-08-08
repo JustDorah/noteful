@@ -88,7 +88,7 @@ export default class AddFolder extends Component {
               type="text"
               className="addFolder_text"
               name="folderName"
-              id="Foldername"
+              id="folderName"
               //defaultValue="Interesting"
               ref={this.folderNameInput}
               onChange={e => this.updateNewFolder(e.target.value)}
