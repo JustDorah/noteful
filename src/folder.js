@@ -14,6 +14,11 @@ export default class Folder extends Component {
   };
 
   static contextType = NotefulContext;
+  handleAddNoteButton = () => {
+    this.props.history.push("/addNote");
+    console.log("this.props.history.push: ", this.props.history);
+  };
+
   render() {
     const { ApiNotes } = this.context;
 
@@ -66,7 +71,9 @@ export default class Folder extends Component {
 
         <main className="main">
           {displayFoldersNotes}
-          <div className="nButton">Add note</div>
+          <button className="nButton" onClick={this.handleAddNoteButton}>
+            Add note
+          </button>
         </main>
       </div>
     );

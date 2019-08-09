@@ -91,7 +91,7 @@ export default class AddNote extends Component {
     const nameError = this.validateNoteName();
     return (
       <div className="addFolder">
-        <h2>Create a folder</h2>
+        <h2>Create a Note</h2>
         <form className="addFolder_form" onSubmit={e => this.handleNewNote(e)}>
           <div className="form-group">
             <label htmlFor="noteName">
