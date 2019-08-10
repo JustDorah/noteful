@@ -1,0 +1,54 @@
+.Home {
+  margin: 2px;
+}
+
+.header {
+  text-align: center;
+  padding: 30px;
+  border-bottom: 1px solid #919191;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 2;
+  background: #ffffff;
+}
+
+/* SIDE BAR stylings */
+.folderList {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 146px;
+  left: 0;
+  overflow: hidden;
+  /* padding-top: 20px; */
+  border-right: 1px solid #919191;
+}
+
+/* links show up as <a> tags  */
+.sidebar a {
+  padding: 6px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+  background-color: #818181;
+}
+/* FOLDER stylings */
+.eachFolder {
+  width: 100%;
+  border: 1px solid #919191;
+}
+
+/* MAIN stylings */
+.main {
+  margin-left: 165px;
+  position: relative;
+  top: 157px;
+  overflow: hidden;
+}

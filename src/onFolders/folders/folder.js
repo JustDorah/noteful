@@ -1,22 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 //import { Link } from "react-router-dom";
+import NotefulContext from "../../context/NotefulContext";
 
-export default class Folder extends Component {
-  render() {
-    const { fName, key } = this.props;
-
-    return (
-      <div className="Folder">
-        {/* stuff */}
-        <h3>FOLDER</h3>
+export default function Folder(props) {
+  console.log(props);
+  return (
+    <NotefulContext.Consumer>
+      {context => (
         <div
-          className="eachFolder"
-          key={key}
-          data-div_id={key}
+          className="Folder"
+          key={props.id}
+          //data-div_id={id}
           // onClick={e => setSelectedFolder(folder.id)}
-        />
-        {fName}
-      </div>
-    );
-  }
+        >
+          {/* Prop.fName is actually what is showing up in the sidebar of home
+          Test it out by typing a  word in this div. it will showup in the side bar */}
+          {props.fName}
+        </div>
+      )}
+    </NotefulContext.Consumer>
+  );
 }

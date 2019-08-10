@@ -6,11 +6,12 @@ import Header from "./header/header";
 import FolderList from "./onFolders/folders/folderList";
 import NoteList from "./onNotes/notes/noteList";
 
+import "./home.css";
+
 export default class Home extends Component {
   render() {
     return (
       <div className="Home">
-        HOME
         <header className="header">
           <Header />
         </header>
@@ -18,6 +19,7 @@ export default class Home extends Component {
           <FolderList />
         </nav>
         <main className="main">
+          Yo!
           <NoteList />
         </main>
       </div>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import NotefulContext from "../NotefulContext";
 import MainPage from "./mainPage";
-import config from "./config";
+import config from "../store/config";
 import Folder from "./folder";
 import Note from "./note";
 
