@@ -27,7 +27,6 @@ export default class App extends Component {
       selectedFolder: id
     });
   };
-  /**Implement delete button */
 
   /**Store fetch response for folders and notes */
 
@@ -46,6 +45,8 @@ export default class App extends Component {
     });
     //console.log(ApiNotes, "APP ApiNotes");
   };
+
+  /**Implement delete button */
   deleteNote = noteId => {
     console.log("noteID in App", noteId);
     const newNotes = this.state.ApiNotes.filter(n => n.id !== noteId);
@@ -60,9 +61,17 @@ export default class App extends Component {
     });
   };
 
+  //New Note
+  AddNote = ApiNotes => {
+    console.log("apiNotes addNote gotten");
+    this.setState({
+      ApiNotes: [...this.state.ApiNotes, ApiNotes]
+    });
+  };
+
   /**Get/Fetch folders and notes */
   componentDidMount() {
-    //Get folder data
+    //Get FOLDER data
     fetch(config.API_FOLDERS, {
       method: "GET",
       headers: {
@@ -78,7 +87,7 @@ export default class App extends Component {
       .then(this.setFolder)
       .catch(error => this.setState({ error }));
 
-    //get note data
+    //get NOTE data
     fetch(config.API_NOTES, {
       method: "GET",
       headers: {

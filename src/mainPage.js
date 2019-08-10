@@ -1,18 +1,21 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./main.css";
 import NoteList from "./noteList";
 import NotefulContext from "./NotefulContext";
-import AddFolder from "./Folder/addFolder";
+import Note from "./note";
+import config from "./config";
 
-class MainPage extends Component {
+export default class MainPage extends Component {
   //reason for this again?
   static defaultProps = {
     ApiFolder: [],
     ApiNotes: [],
     selectedFolder: "eachFolder",
     setSelectedFolder: () => {},
-    addFolder: () => {}
+    addFolder: () => {},
+    deleteNote: () => {},
+    onDelete: () => {}
   };
 
   //reason for this?
@@ -21,6 +24,54 @@ class MainPage extends Component {
     //console.log(this.props.history.push("/addFolder"));
     this.props.history.push("/addFolder");
   };
+
+  onDelete = noteId => {
+    //console.log("this.props.note.id: ", id);
+
+    this.deleteNoteRequest(noteId, this.context.deleteNote);
+    //this.returnHome();
+  };
+
+  // returnHome = () => {
+  //   console.log("return home!", this.props);
+  //   this.props.history.push("/");
+
+  //   //Router.dispatch(location.getCurrentPath(), null);
+  // };
+
+  deleteNoteRequest = (noteId, callback) => {
+    console.log("delete not request", noteId);
+
+    return fetch(config.API_NOTES + `/${noteId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          // get the error message from the response,
+          return res.json().then(error => {
+            // then throw it
+            throw error;
+          });
+        }
+        return res.json();
+      })
+      .then(data => {
+        console.log({ data });
+        console.log("Callback...", callback);
+        // call the callback when the request is successful
+        // this is where the App component can remove it from state
+        //callback(noteId);
+        //console.log("callback: ", callback);
+        // this.onDelete(noteId);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
   render() {
     const {
       ApiFolder,
@@ -47,9 +98,15 @@ class MainPage extends Component {
           </h2>
           <p>Date modified on {date}</p>
           <p />
-          <div className="removeNoteButton" key={note.id}>
+          <button
+            className="removeNoteButton"
+            key={note.id}
+            onClick={e => {
+              this.onDelete(note.id);
+            }}
+          >
             Delete Note
-          </div>
+          </button>
         </div>
       );
     });
@@ -102,5 +159,3 @@ class MainPage extends Component {
     );
   }
 }
-
-export default withRouter(MainPage);

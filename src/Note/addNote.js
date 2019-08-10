@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import NotefulContext from "../NotefulContext";
 import ValidationError from "../errorBoundaries/validationError";
 import config from "../config";
@@ -6,7 +7,7 @@ import config from "../config";
 
 //import "./addFolder.css";
 
-export default class AddNote extends Component {
+class AddNote extends Component {
   constructor(props) {
     super(props);
     this.noteNameInput = React.createRef();
@@ -28,10 +29,11 @@ export default class AddNote extends Component {
       error: null
     };
   }
+
   static contextType = NotefulContext;
 
   //POST new note
-  handleNewNote = e => {
+  handleNewNote = (e, callback) => {
     e.preventDefault();
 
     //console.log("noteContent: ", noteContent);
@@ -59,8 +61,13 @@ export default class AddNote extends Component {
         return response.json();
       })
       .then(note => {
+        console.log("hi!", callback);
+        console.log("this. prop.history", this.props.history);
         this.context.addNote(note);
+
         this.props.history.push("/note/" + note.id);
+        callback(note);
+        //console.log(this.props.history, "NOTE.js page not redirecting");
       })
       .catch(e => this.setState({ APIError: e.message }));
   };
@@ -154,14 +161,14 @@ export default class AddNote extends Component {
           <div className="addFolder__button__group">
             <button
               type="reset"
-              className="addFolder_cancelBtn"
+              className="addNote_cancelBtn"
               onClick={this.handleCancelButton}
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="addFolder_saveBtn"
+              className="addNote_saveBtn"
               disabled={this.validateNoteName()}
             >
               Save
@@ -172,3 +179,5 @@ export default class AddNote extends Component {
     );
   }
 }
+
+export default withRouter(AddNote);

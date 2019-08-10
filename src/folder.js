@@ -20,7 +20,13 @@ export default class Folder extends Component {
   };
 
   render() {
-    const { ApiNotes } = this.context;
+    const {
+      ApiNotes,
+
+      deleteNoteRequest,
+      deleteNote,
+      onDelete
+    } = this.context;
 
     //weird....
     //console.log(this.props.history.push("/addFolder"));
@@ -37,45 +43,54 @@ export default class Folder extends Component {
     // console.log("folderNotes folderJs", folderNotes);
 
     //mapping out and display folderNotes
-    const displayFoldersNotes = folderNotes.map(note => {
-      const modified = note.modified;
-      const moment = require("moment");
-      let d1 = moment(modified);
-      let date = d1.format("Do MMM YYYY");
-      //console.log(date);
-      return (
-        <div className="eachNote" key={note.id}>
-          <h2>
-            <Link to={`/note/${note.id}`}>{note.name}</Link>
-          </h2>
-          <p>Date modified on {date}</p>
-          <p />
-          <div className="removeNoteButton" key={note.id}>
-            Delete Note
-          </div>
-        </div>
-      );
-    });
 
     return (
-      <div>
-        <header className="mainHeader">
-          <h1>
-            <Link to="/">Noteful</Link>
-          </h1>
-        </header>
+      <NotefulContext.Consumer>
+        {context => (
+          <div>
+            <header className="mainHeader">
+              <h1>
+                <Link to="/">Noteful</Link>
+              </h1>
+            </header>
 
-        <nav className="sidebar">
-          <MainPage />
-        </nav>
+            <nav className="sidebar">
+              <MainPage />
+            </nav>
 
-        <main className="main">
-          {displayFoldersNotes}
-          <button className="nButton" onClick={this.handleAddNoteButton}>
-            Add note
-          </button>
-        </main>
-      </div>
+            <main className="main">
+              {folderNotes.map(note => {
+                const modified = note.modified;
+                const moment = require("moment");
+                let d1 = moment(modified);
+                let date = d1.format("Do MMM YYYY");
+                //console.log(date);
+                return (
+                  <div className="eachNote" key={note.id}>
+                    <h2>
+                      <Link to={`/note/${note.id}`}>{note.name}</Link>
+                    </h2>
+                    <p>Date modified on {date}</p>
+                    <p />
+                    <button
+                      className="removeNoteButton"
+                      key={note.id}
+                      // onClick={e => {
+                      //   this.context.onDelete(note.id);
+                      // }}
+                    >
+                      Delete Note
+                    </button>
+                  </div>
+                );
+              })}
+              <button className="nButton" onClick={this.handleAddNoteButton}>
+                Add note
+              </button>
+            </main>
+          </div>
+        )}
+      </NotefulContext.Consumer>
     );
   }
 }

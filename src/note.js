@@ -28,10 +28,11 @@ function deleteNoteRequest(noteId, callback) {
     })
     .then(data => {
       console.log({ data });
-      console.log("Callback...");
+      console.log("Callback...", callback);
       // call the callback when the request is successful
       // this is where the App component can remove it from state
       callback(noteId);
+      console.log("callback: ", callback);
       // this.onDelete(noteId);
     })
     .catch(error => {
@@ -50,6 +51,8 @@ class Note extends Component {
 
   //reason for this?
   static contextType = NotefulContext;
+
+  //OnDelete....
   onDelete = () => {
     //this.props.history.push("/");
 
