@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import NotefulContext from "../NotefulContext";
-import ValidationError from "../errorBoundaries/validationError";
+import ValidationError from "../Folder/errorBoundaries/validationError";
 import config from "../config";
 //import moment = require("moment");
 

@@ -63,7 +63,7 @@ export default class MainPage extends Component {
         console.log("Callback...", callback);
         // call the callback when the request is successful
         // this is where the App component can remove it from state
-        //callback(noteId);
+        callback(noteId);
         //console.log("callback: ", callback);
         // this.onDelete(noteId);
       })
