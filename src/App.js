@@ -15,6 +15,7 @@ import AddNote from "./onNotes/addNote/addNote";
 import folderList from "./onFolders/folders/folderList";
 
 import "./App.css";
+import NoteDetails from "./onNotes/notes/NoteDetails";
 
 class App extends Component {
   constructor() {
@@ -109,18 +110,19 @@ class App extends Component {
         {/*  */}
         <NotefulContext.Provider value={contextValue}>
           {/* NAV */}
-          <nav className="sidebar">
+          {/* <nav className="sidebar" role="navigation" aria-label="Menu"> */}
+          <nav>
             <Route exact path="/" component={folderList} />
-            <Route path={`/folder/:folderId`} component={Folder} />
-            {/* <Route path={`/folder/:folderId`} component={NoteList} /> */}
+            <Route path={`/folder/:folderId`} component={folderList} />
           </nav>
           {/* MAIN */}
-          <main className="main">
+          <main>
             <Route exact path="/" component={NoteList} />
+            <Route path={`/folder/:folderId`} component={NoteList} />
+
+            <Route path={`/note/:noteId`} component={NoteDetails} />
 
             <Route path={`/addFolder`} component={AddFolder} />
-
-            <Route path={`/note/:noteId`} component={Note} />
 
             <Route path={`/addNote`} component={AddNote} />
           </main>

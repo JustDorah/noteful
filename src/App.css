@@ -23,7 +23,10 @@
   left: 0;
   overflow: hidden;
   padding-top: 18px;
+  padding-left: 0;
+  margin: 0;
   border-right: 1px solid #919191;
+  list-style: none;
 }
 
 /* links show up as <a> tags  */

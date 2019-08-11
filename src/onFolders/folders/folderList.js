@@ -13,22 +13,24 @@ class FolderList extends Component {
     return (
       <NotefulContext.Consumer>
         {context => (
-          <div className="folderList">
-            {context.ApiFolder.map(folder => {
-              /*console.log(folder.id); */
-              return (
-                <div className="eachFolder" id={folder.id} key={folder.id}>
-                  {/* Trying out NAV link vs link */}
-                  <NavLink
-                    to={`/folder/${folder.id}`}
-                    activeClassName="selectedFolder"
-                  >
-                    <Folder fName={folder.name} id={folder.id} />
-                  </NavLink>
-                </div>
-              );
-            })}
-          </div>
+          <nav className="sidebar" role="navigation" aria-label="Menu">
+            <ul className="folderList">
+              {context.ApiFolder.map(folder => {
+                /*console.log(folder.id); */
+                return (
+                  <li className="eachFolder" id={folder.id} key={folder.id}>
+                    {/* Trying out NAV link vs link */}
+                    <NavLink
+                      to={`/folder/${folder.id}`}
+                      activeClassName="selectedFolder"
+                    >
+                      <Folder fName={folder.name} id={folder.id} />
+                    </NavLink>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
         )}
       </NotefulContext.Consumer>
     );
