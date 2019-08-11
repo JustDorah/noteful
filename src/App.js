@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import config from "./store/config";
 import NotefulContext from "./context/NotefulContext";
 
@@ -10,11 +10,12 @@ import Folder from "./onFolders/folders/folder";
 import AddFolder from "./onFolders/addFolder/addFolder";
 //import NoteList from "./onNotes/notes/noteList";
 import Note from "./onNotes/notes/note";
+import NoteList from "./onNotes/notes/noteList";
 import AddNote from "./onNotes/addNote/addNote";
 
 //import "./App.css";
 
-export default class App extends Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -72,7 +73,7 @@ export default class App extends Component {
       ApiFolder,
       error: null
     });
-    console.log(ApiFolder, "APP ApiFolder");
+    //console.log(ApiFolder, "APP ApiFolder");
   };
 
   setNote = ApiNotes => {
@@ -80,7 +81,7 @@ export default class App extends Component {
       ApiNotes,
       error: null
     });
-    console.log(ApiNotes, "APP ApiNotes");
+    //console.log(ApiNotes, "APP ApiNotes");
   };
   render() {
     const contextValue = {
@@ -92,6 +93,7 @@ export default class App extends Component {
         <div className="App">
           <Route exact path="/" component={Home} />
           <Route path={`/folder/:folderId`} component={Folder} />
+          <Route path="/folder/:folderId" component={NoteList} />
           <Route path={`/addFolder`} component={AddFolder} />
           <Route path={`/note/:noteId`} component={Note} />
           <Route path={`/addNote`} component={AddNote} />
@@ -100,3 +102,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default withRouter(App);

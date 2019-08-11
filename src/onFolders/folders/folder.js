@@ -3,7 +3,7 @@ import React from "react";
 import NotefulContext from "../../context/NotefulContext";
 
 export default function Folder(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <NotefulContext.Consumer>
       {context => (
