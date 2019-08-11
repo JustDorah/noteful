@@ -20,7 +20,7 @@ class App extends Component {
     super();
     this.state = {
       // stuff here
-      ApiData: [],
+      ApiNotes: [],
       ApiFolder: []
     };
   }
@@ -73,7 +73,7 @@ class App extends Component {
       ApiFolder,
       error: null
     });
-    //console.log(ApiFolder, "APP ApiFolder");
+    console.log(ApiFolder, "APP ApiFolder");
   };
 
   setNote = ApiNotes => {
@@ -81,7 +81,7 @@ class App extends Component {
       ApiNotes,
       error: null
     });
-    //console.log(ApiNotes, "APP ApiNotes");
+    console.log(ApiNotes, "APP ApiNotes");
   };
   render() {
     const contextValue = {
@@ -93,7 +93,7 @@ class App extends Component {
         <div className="App">
           <Route exact path="/" component={Home} />
           <Route path={`/folder/:folderId`} component={Folder} />
-          <Route path="/folder/:folderId" component={NoteList} />
+          {/* <Route path={`/folder/:folderId`} component={NoteList} /> */}
           <Route path={`/addFolder`} component={AddFolder} />
           <Route path={`/note/:noteId`} component={Note} />
           <Route path={`/addNote`} component={AddNote} />

@@ -5,6 +5,7 @@ import NotefulContext from "./context/NotefulContext";
 import Header from "./header/header";
 import FolderList from "./onFolders/folders/folderList";
 import NoteList from "./onNotes/notes/noteList";
+import Note from "./onNotes/notes/note";
 
 import "./home.css";
 

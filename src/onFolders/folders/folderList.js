@@ -1,17 +1,19 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import NotefulContext from "../../context/NotefulContext";
 
 import Folder from "./folder";
 
-export default class FolderList extends Component {
+class FolderList extends Component {
+  static contextType = NotefulContext;
   render() {
+    console.log(this.context.ApiFolder);
+    console.log(this.props);
+
     return (
       <NotefulContext.Consumer>
         {context => (
           <div className="folderList">
-            {/* stuff */}
-            {/* <h3>FOLDER LIST</h3> */}
             {context.ApiFolder.map(folder => {
               /*console.log(folder.id); */
               return (
@@ -32,3 +34,4 @@ export default class FolderList extends Component {
     );
   }
 }
+export default withRouter(FolderList);

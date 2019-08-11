@@ -52,3 +52,23 @@
   top: 157px;
   overflow: hidden;
 }
+
+.eachNote {
+  margin: 5px;
+  padding-left: 3px;
+  width: 500px;
+  border: 1px solid #919191;
+}
+
+.eachNote h2 {
+  margin: 0;
+}
+
+.eachNote p {
+  display: inline-block;
+}
+.removeNoteButton {
+  display: inline-block;
+  border: 1px solid #919191;
+  margin: 2px 2px 2px 130px;
+}
