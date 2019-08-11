@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Route, withRouter } from "react-router-dom";
+import { Route, Link, withRouter } from "react-router-dom";
 import config from "./store/config";
 import NotefulContext from "./context/NotefulContext";
 
-import Home from "./home";
-//import Header from "./header/header";
+//import Home from "./home";
+import Header from "./header/header";
 //import FolderList from "./onFolders/folders/folderList";
 import Folder from "./onFolders/folders/folder";
 import AddFolder from "./onFolders/addFolder/addFolder";
@@ -12,8 +12,9 @@ import AddFolder from "./onFolders/addFolder/addFolder";
 import Note from "./onNotes/notes/note";
 import NoteList from "./onNotes/notes/noteList";
 import AddNote from "./onNotes/addNote/addNote";
+import folderList from "./onFolders/folders/folderList";
 
-//import "./App.css";
+import "./App.css";
 
 class App extends Component {
   constructor() {
@@ -89,16 +90,42 @@ class App extends Component {
       ApiNotes: this.state.ApiNotes
     };
     return (
-      <NotefulContext.Provider value={contextValue}>
-        <div className="App">
+      /*
+<div className="App">
+        <NotefulContext.Provider value={contextValue}>
           <Route exact path="/" component={Home} />
           <Route path={`/folder/:folderId`} component={Folder} />
-          {/* <Route path={`/folder/:folderId`} component={NoteList} /> */}
+          {/* <Route path={`/folder/:folderId`} component={NoteList} /> *}
           <Route path={`/addFolder`} component={AddFolder} />
           <Route path={`/note/:noteId`} component={Note} />
           <Route path={`/addNote`} component={AddNote} />
-        </div>
-      </NotefulContext.Provider>
+        </NotefulContext.Provider>
+      </div>
+*/
+      <div className="App">
+        <header className="header">
+          <Header />
+        </header>
+        {/*  */}
+        <NotefulContext.Provider value={contextValue}>
+          {/* NAV */}
+          <nav className="sidebar">
+            <Route exact path="/" component={folderList} />
+            <Route path={`/folder/:folderId`} component={Folder} />
+            {/* <Route path={`/folder/:folderId`} component={NoteList} /> */}
+          </nav>
+          {/* MAIN */}
+          <main className="main">
+            <Route exact path="/" component={NoteList} />
+
+            <Route path={`/addFolder`} component={AddFolder} />
+
+            <Route path={`/note/:noteId`} component={Note} />
+
+            <Route path={`/addNote`} component={AddNote} />
+          </main>
+        </NotefulContext.Provider>
+      </div>
     );
   }
 }

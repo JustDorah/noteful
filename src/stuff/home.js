@@ -1,15 +1,21 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
-import NotefulContext from "./context/NotefulContext";
+import { Link, withRouter } from "react-router-dom";
+import NotefulContext from "../context/NotefulContext";
 
-import Header from "./header/header";
-import FolderList from "./onFolders/folders/folderList";
-import NoteList from "./onNotes/notes/noteList";
-import Note from "./onNotes/notes/note";
+import Header from "../header/header";
+import FolderList from "../onFolders/folders/folderList";
+import NoteList from "../onNotes/notes/noteList";
+import Note from "../onNotes/notes/note";
 
 import "./home.css";
 
-export default class Home extends Component {
+class Home extends Component {
+  static defaultProps = {
+    ApiNotes: [],
+    ApiFolder: []
+  };
+  static contextType = NotefulContext;
+
   render() {
     return (
       <NotefulContext.Consumer>
@@ -30,3 +36,4 @@ export default class Home extends Component {
     );
   }
 }
+export default withRouter(Home);
