@@ -5,6 +5,7 @@ import "../../utils/helper-functions";
 
 import Note from "./note";
 import "./noteList.css";
+import { dateModified } from "../../utils/helper-functions";
 
 class NoteList extends Component {
   static defaultProps = {
@@ -34,15 +35,18 @@ if (this.props.match.path === "/folder/:folderId") {
     return (
       <NotefulContext.Consumer>
         {context => (
-          <div className="main">
+          <div className="main list">
             {this.homeNotesFolderNotes().map(notes => {
-              /* const modified = notes.modified;
-              const moment = require("moment");
-              let d1 = moment(modified);
-              let date = d1.format("Do MMM YYYY");date={date} id={notes.id} }*/
-
-              return <Note {...notes} nName={notes.name} />;
+              let date = dateModified(notes);
+              //console.log(date);
+              return <Note {...notes} nName={notes.name} date={date} />;
             })}
+            <button
+              className="nButton"
+              onClick={() => this.props.history.push("/addNote")}
+            >
+              Add note
+            </button>
           </div>
         )}
       </NotefulContext.Consumer>
