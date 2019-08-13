@@ -1,19 +1,19 @@
 import React, { Component } from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import NotefulContext from "../../context/NotefulContext";
 
 import Folder from "./folder";
 
-class FolderList extends Component {
+export default class FolderList extends Component {
   static contextType = NotefulContext;
   render() {
-    console.log(this.context.ApiFolder);
-    console.log(this.props);
+    // console.log(this.context.ApiFolder);
+    //console.log(this.props);
 
     return (
       <NotefulContext.Consumer>
         {context => (
-          <nav className="sidebar" role="navigation" aria-label="Menu">
+          <nav className="sidebar list" role="navigation" aria-label="Menu">
             <ul className="folderList">
               {context.ApiFolder.map(folder => {
                 /*console.log(folder.id); */
@@ -30,10 +30,16 @@ class FolderList extends Component {
                 );
               })}
             </ul>
+            <br />
+            <button
+              className="sidebarBtn add"
+              onClick={() => this.props.history.push("/addFolder")}
+            >
+              Add Folder
+            </button>
           </nav>
         )}
       </NotefulContext.Consumer>
     );
   }
 }
-export default withRouter(FolderList);

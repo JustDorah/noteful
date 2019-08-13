@@ -14,7 +14,7 @@
 }
 
 /* SIDE BAR stylings */
-.folderList {
+.sidebar {
   height: 100%;
   width: 160px;
   position: fixed;
@@ -23,10 +23,13 @@
   left: 0;
   overflow: hidden;
   padding-top: 18px;
+
+  border-right: 1px solid #919191;
+}
+.folderList {
+  list-style: none;
   padding-left: 0;
   margin: 0;
-  border-right: 1px solid #919191;
-  list-style: none;
 }
 
 /* links show up as <a> tags  */
@@ -42,10 +45,26 @@
   color: #f1f1f1;
   background-color: #818181;
 }
+
+.sidebar > div {
+  font-size: 30px;
+  font-weight: 500;
+  text-align: center;
+  color: #494949;
+}
 /* FOLDER stylings */
 .eachFolder {
   width: 100%;
   border: 1px solid #919191;
+}
+.selectedFolder {
+  background-color: #9ed3f1;
+}
+
+/* BUTTON stylings */
+.sidebarBtn {
+  display: block;
+  margin: auto;
 }
 
 /* MAIN stylings */

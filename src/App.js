@@ -1,21 +1,22 @@
 import React, { Component } from "react";
-import { Route, Link, withRouter } from "react-router-dom";
+import { Route } from "react-router-dom";
 import config from "./store/config";
 import NotefulContext from "./context/NotefulContext";
 
 //import Home from "./home";
 import Header from "./header/header";
 //import FolderList from "./onFolders/folders/folderList";
-import Folder from "./onFolders/folders/folder";
+//import Folder from "./onFolders/folders/folder";
 import AddFolder from "./onFolders/addFolder/addFolder";
 //import NoteList from "./onNotes/notes/noteList";
-import Note from "./onNotes/notes/note";
+//import Note from "./onNotes/notes/note";
 import NoteList from "./onNotes/notes/noteList";
 import AddNote from "./onNotes/addNote/addNote";
-import folderList from "./onFolders/folders/folderList";
+import folderList from "./onFolders/folders/FolderList";
 
 import "./App.css";
-import NoteDetails from "./onNotes/notes/NoteDetails";
+import DisplayNoteDetails from "./onNotes/notes/DisplayNoteDetails";
+import DisplayFolderDetails from "./onFolders/folders/DisplayFolderDetails";
 
 class App extends Component {
   constructor() {
@@ -75,7 +76,7 @@ class App extends Component {
       ApiFolder,
       error: null
     });
-    console.log(ApiFolder, "APP ApiFolder");
+    //console.log(ApiFolder, "APP ApiFolder");
   };
 
   setNote = ApiNotes => {
@@ -83,12 +84,26 @@ class App extends Component {
       ApiNotes,
       error: null
     });
-    console.log(ApiNotes, "APP ApiNotes");
+    //console.log(ApiNotes, "APP ApiNotes");
   };
+
+  /**Set State of deleted Note */
+  deleteNote = noteId => {
+    console.log("noteID in App", noteId);
+    const newNotes = this.state.ApiNotes.filter(n => n.id !== noteId);
+    this.setState({ ApiNotes: newNotes });
+    console.log(newNotes, "noteID");
+  };
+
   render() {
     const contextValue = {
+      ApiData: this.state.ApiData,
       ApiFolder: this.state.ApiFolder,
-      ApiNotes: this.state.ApiNotes
+      ApiNotes: this.state.ApiNotes,
+      selectedFolder: this.state.selectedFolder,
+      setSelectedFolder: this.setSelectedFolder,
+      deleteNote: this.deleteNote,
+      onDelete: this.onDelete
     };
     return (
       /*
@@ -114,13 +129,14 @@ class App extends Component {
           <nav>
             <Route exact path="/" component={folderList} />
             <Route path={`/folder/:folderId`} component={folderList} />
+            <Route path={`/note/:noteId`} component={DisplayFolderDetails} />
           </nav>
           {/* MAIN */}
           <main>
             <Route exact path="/" component={NoteList} />
             <Route path={`/folder/:folderId`} component={NoteList} />
 
-            <Route path={`/note/:noteId`} component={NoteDetails} />
+            <Route path={`/note/:noteId`} component={DisplayNoteDetails} />
 
             <Route path={`/addFolder`} component={AddFolder} />
 
@@ -132,4 +148,5 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+//export default withRouter(App);
+export default App;
