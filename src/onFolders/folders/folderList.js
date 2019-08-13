@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import NotefulContext from "../../context/NotefulContext";
 
-import Folder from "./folder";
+import Folder from "./Folder";
 
 export default class FolderList extends Component {
   static contextType = NotefulContext;

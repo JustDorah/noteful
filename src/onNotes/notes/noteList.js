@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import NotefulContext from "../../context/NotefulContext";
-//import { Link, withRouter } from "react-router-dom";
+//import { Link withRouter } from "react-router-dom";
 import "../../utils/helper-functions";
 
 import Note from "./note";
