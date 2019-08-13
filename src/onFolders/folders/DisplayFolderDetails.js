@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import NotefulContext from "../../context/NotefulContext";
-import Folder from "./folder";
+import Folder from "./Folder";
 
 export default class DisplayFolderDetails extends Component {
   static defaultProps = {

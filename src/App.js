@@ -3,20 +3,17 @@ import { Route } from "react-router-dom";
 import config from "./store/config";
 import NotefulContext from "./context/NotefulContext";
 
-//import Home from "./home";
 import Header from "./header/header";
-//import FolderList from "./onFolders/folders/folderList";
-//import Folder from "./onFolders/folders/folder";
-import AddFolder from "./onFolders/addFolder/addFolder";
-//import NoteList from "./onNotes/notes/noteList";
-//import Note from "./onNotes/notes/note";
-import NoteList from "./onNotes/notes/noteList";
-import AddNote from "./onNotes/addNote/addNote";
-import folderList from "./onFolders/folders/FolderList";
 
+import FolderList from "./onFolders/Folders/FolderList";
+import DisplayFolderDetails from "./onFolders/Folders/DisplayFolderDetails";
+
+import NoteList from "./onNotes/notes/noteList";
 import "./App.css";
 import DisplayNoteDetails from "./onNotes/notes/DisplayNoteDetails";
-import DisplayFolderDetails from "./onFolders/folders/DisplayFolderDetails";
+
+import AddFolder from "./onFolders/AddFolder/AddFolder";
+import AddNote from "./onNotes/addNote/addNote";
 
 class App extends Component {
   constructor() {
@@ -127,8 +124,8 @@ class App extends Component {
           {/* NAV */}
           {/* <nav className="sidebar" role="navigation" aria-label="Menu"> */}
           <nav>
-            <Route exact path="/" component={folderList} />
-            <Route path={`/folder/:folderId`} component={folderList} />
+            <Route exact path="/" component={FolderList} />
+            <Route path={`/folder/:folderId`} component={FolderList} />
             <Route path={`/note/:noteId`} component={DisplayFolderDetails} />
           </nav>
           {/* MAIN */}
