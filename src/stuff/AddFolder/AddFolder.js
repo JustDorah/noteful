@@ -30,7 +30,7 @@ class AddFolder extends Component {
   handleNewFolder(folderName, callback) {
     //e.preventDefault();
     //let { folderName } = e.target;
-    // console.log(folderName.value);
+    console.log(folderName);
     //const title = this.folderNameInput.current.value;
     const title = {
       name: folderName
