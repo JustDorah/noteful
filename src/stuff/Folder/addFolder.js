@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import NotefulContext from "../NotefulContext";
-import ValidationError from "./errorBoundaries/validationError";
+import ValidationError from "../../ErrorBoundaries/validationError";
 import config from "../config";
 
 import "./addFolder.css";

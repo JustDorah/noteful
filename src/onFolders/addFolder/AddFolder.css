@@ -13,12 +13,12 @@
 
 .form-group {
   margin: 0 auto;
-  width: 500px;
+  width: 400px;
 }
 .addFolder_form input {
   display: block;
   text-align: left;
-  /* margin: 0 auto; */
+  margin: 0 auto;
   margin-top: 10px;
   /* margin-bottom: 15px; */
   /* minus side padding and border */

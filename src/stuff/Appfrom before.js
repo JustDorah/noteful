@@ -116,7 +116,8 @@ export default class App extends Component {
       setSelectedFolder: this.setSelectedFolder,
       deleteNote: this.deleteNote,
       onDelete: this.onDelete,
-      addFolder: this.addFolder
+      addFolder: this.addFolder,
+      onNewFolderCreation: this.onNewFolderCreation
     };
 
     return (

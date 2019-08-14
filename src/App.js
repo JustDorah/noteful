@@ -92,6 +92,15 @@ class App extends Component {
     console.log(newNotes, "noteID");
   };
 
+  /** Set state of newly created folder */
+  addFolder = folder => {
+    let addedFolder = [...this.state.ApiFolder, folder];
+    this.setState({
+      ApiFolder: addedFolder
+    });
+  };
+  /** Set state of newly created note */
+
   render() {
     const contextValue = {
       ApiData: this.state.ApiData,
@@ -127,6 +136,7 @@ class App extends Component {
             <Route exact path="/" component={FolderList} />
             <Route path={`/folder/:folderId`} component={FolderList} />
             <Route path={`/note/:noteId`} component={DisplayFolderDetails} />
+            <Route path={`/addFolder`} component={FolderList} />
           </nav>
           {/* MAIN */}
           <main>
