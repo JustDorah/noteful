@@ -13,7 +13,7 @@ import "./App.css";
 import DisplayNoteDetails from "./onNotes/notes/DisplayNoteDetails";
 
 import NewFolder from "./onFolders/AddFolders/NewFolder";
-import AddNote from "./onNotes/AddNote/AddNote";
+import AddNote from "./onNotes/addNote/addNote";
 
 class App extends Component {
   constructor() {
