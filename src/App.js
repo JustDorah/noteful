@@ -12,7 +12,7 @@ import NoteList from "./onNotes/notes/noteList";
 import "./App.css";
 import DisplayNoteDetails from "./onNotes/notes/DisplayNoteDetails";
 
-import AddFolder from "./onFolders/AddFolder/AddFolder";
+import NewFolder from "./onFolders/AddFolders/NewFolder";
 import AddNote from "./onNotes/AddNote/AddNote";
 
 class App extends Component {
@@ -145,7 +145,7 @@ class App extends Component {
 
             <Route path={`/note/:noteId`} component={DisplayNoteDetails} />
 
-            <Route path={`/addFolder`} component={AddFolder} />
+            <Route path={`/addFolder`} component={NewFolder} />
 
             <Route path={`/addNote`} component={AddNote} />
           </main>
