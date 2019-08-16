@@ -19,11 +19,13 @@ class NewFolder extends Component {
       fetchError: ""
     };
   }
+
   static defaultProps = {
     ApiFolder: [],
     addFolder: () => {},
     onNewFolderCreation: () => {}
   };
+
   static contextType = NotefulContext;
 
   /** *** CREATE NEW FOLDER REQUEST*** */
@@ -62,7 +64,7 @@ class NewFolder extends Component {
   }
 
   returnHome = folder => {
-    console.log("Goint to folder!! :)", this.props);
+    console.log("Going to folder!! :)", this.props);
 
     this.props.history.push("/folder/" + folder.id);
   };

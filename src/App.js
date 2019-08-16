@@ -102,8 +102,10 @@ class App extends Component {
   /** Set state of newly created note */
   AddNote = ApiNotes => {
     console.log("apiNotes addNote gotten");
+
+    let addedNote = [...this.state.ApiNotes, ApiNotes];
     this.setState({
-      ApiNotes: [...this.state.ApiNotes, ApiNotes]
+      ApiNotes: addedNote
     });
   };
 
@@ -118,7 +120,8 @@ class App extends Component {
       onDelete: this.onDelete,
       addFolder: this.addFolder,
       onNewFolderCreation: this.onNewFolderCreation,
-      addNote: this.addNote
+      addNote: this.addNote,
+      onNewNoteCreation: this.onNewNoteCreation
     };
     return (
       /*
