@@ -40,7 +40,8 @@ class AddNote extends Component {
 
   //POST new note
   handleNewNote = (e, callback) => {
-    // e.preventDefault();
+    e.preventDefault();
+    console.log(" e: ", e);
 
     const moment = require("moment");
     //using refs to get input info
@@ -67,13 +68,14 @@ class AddNote extends Component {
         return response.json();
       })
       .then(note => {
-        console.log("addnote datat", note);
+        console.log("addNote fetch data", note);
+        console.log(this.context.addNote);
         console.log("hi!", callback);
         // console.log("this. prop.history", this.props.history);
         // this.context.addNote(note);
 
         //this.props.history.push("/note/" + note.id);
-        callback(e, this.returnToFolder(note));
+        callback(note, this.returnToFolder(note));
         //console.log(this.props.history, "NOTE.js page not redirecting");
       })
       .catch(e => this.setState({ APIError: e.message }));

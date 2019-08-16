@@ -99,11 +99,12 @@ class App extends Component {
       ApiFolder: addedFolder
     });
   };
+
   /** Set state of newly created note */
-  AddNote = ApiNotes => {
+  addNote = note => {
     console.log("apiNotes addNote gotten");
 
-    let addedNote = [...this.state.ApiNotes, ApiNotes];
+    let addedNote = [...this.state.ApiNotes, note];
     this.setState({
       ApiNotes: addedNote
     });
