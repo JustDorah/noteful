@@ -100,6 +100,12 @@ class App extends Component {
     });
   };
   /** Set state of newly created note */
+  AddNote = ApiNotes => {
+    console.log("apiNotes addNote gotten");
+    this.setState({
+      ApiNotes: [...this.state.ApiNotes, ApiNotes]
+    });
+  };
 
   render() {
     const contextValue = {
@@ -109,7 +115,10 @@ class App extends Component {
       selectedFolder: this.state.selectedFolder,
       setSelectedFolder: this.setSelectedFolder,
       deleteNote: this.deleteNote,
-      onDelete: this.onDelete
+      onDelete: this.onDelete,
+      addFolder: this.addFolder,
+      onNewFolderCreation: this.onNewFolderCreation,
+      addNote: this.addNote
     };
     return (
       /*

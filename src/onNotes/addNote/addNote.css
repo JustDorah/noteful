@@ -1,0 +1,10 @@
+.addNote {
+  margin-top: 200px;
+  text-align: center;
+}
+
+.addNote_cancelBtn,
+.addNote_saveBtn {
+  text-align: center;
+  margin-right: 10px;
+}
