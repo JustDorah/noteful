@@ -3,6 +3,7 @@ import NotefulContext from "../../context/NotefulContext";
 import config from "../../store/config";
 import { Link, withRouter } from "react-router-dom";
 import { dateModified } from "../../utils/helper-functions";
+import PropTypes from "prop-types";
 
 import "./note.css";
 
@@ -38,8 +39,8 @@ class Note extends Component {
         return res.json();
       })
       .then(data => {
-        console.log("res.json response data ", { data });
-        console.log("Callback...", callback);
+        // console.log("res.json response data ", { data });
+        // console.log("Callback...", callback);
         // call the callback(deleteNote()) when the request is successful
         // this is where the App component can remove it from state aka setState
         callback(noteId);
@@ -54,14 +55,14 @@ class Note extends Component {
   -I could also go back a page
   -I need withRouter in order to access history */
   returnHome = () => {
-    console.log("Going HOOoommme!! :)", this.props);
+    // console.log("Going HOOoommme!! :)", this.props);
 
     this.props.history.push("/");
   };
 
   onDelete = e => {
     e.preventDefault();
-    console.log("Delete Note initiated");
+    // console.log("Delete Note initiated");
 
     // console.log("noteID: ", this.props.id);
     // console.log("noteID: ", this.context.deleteNote);
@@ -73,7 +74,7 @@ class Note extends Component {
   };
 
   formatDate = () => {
-    //console.log("date in note.js ", this.props.modified);
+    // console.log("date in note.js ", this.props.modified);
     let notes = this.props.modified;
     return dateModified(notes);
   };
@@ -110,3 +111,11 @@ class Note extends Component {
   }
 }
 export default withRouter(Note);
+
+Note.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  modified: PropTypes.string.isRequired,
+  displayDetails: PropTypes.bool,
+  content: PropTypes.string
+};

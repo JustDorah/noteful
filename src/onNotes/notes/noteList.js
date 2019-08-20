@@ -6,6 +6,7 @@ import "../../utils/helper-functions";
 import Note from "./note";
 import "./noteList.css";
 import { dateModified } from "../../utils/helper-functions";
+import NoteErrorBoundary from "../../ErrorBoundaries/NoteErrorBoundary";
 
 class NoteList extends Component {
   static defaultProps = {
@@ -35,19 +36,21 @@ if (this.props.match.path === "/folder/:folderId") {
     return (
       <NotefulContext.Consumer>
         {context => (
-          <div className="main list">
-            {this.homeNotesFolderNotes().map(notes => {
-              let date = dateModified(notes);
-              //console.log(date);
-              return <Note {...notes} nName={notes.name} date={date} />;
-            })}
-            <button
-              className="nButton"
-              onClick={() => this.props.history.push("/addNote")}
-            >
-              Add note
-            </button>
-          </div>
+          <NoteErrorBoundary>
+            <div className="main list">
+              {this.homeNotesFolderNotes().map(notes => {
+                let date = dateModified(notes);
+                //console.log(date);
+                return <Note {...notes} nName={notes.name} date={date} />;
+              })}
+              <button
+                className="nButton"
+                onClick={() => this.props.history.push("/addNote")}
+              >
+                Add note
+              </button>
+            </div>
+          </NoteErrorBoundary>
         )}
       </NotefulContext.Consumer>
     );

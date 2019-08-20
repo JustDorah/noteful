@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import NotefulContext from "../../context/NotefulContext";
 import Folder from "./Folder";
 
@@ -16,7 +15,7 @@ export default class DisplayFolderDetails extends Component {
   //***** *THE RENDER* *****
   render() {
     // console.log(this.context.ApiFolder);
-    // console.log(this.props);
+    //console.log(this.props);
 
     //Id of note clicked
     let noteId = this.props.match.params.noteId;

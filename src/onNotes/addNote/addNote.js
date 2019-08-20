@@ -41,7 +41,7 @@ class AddNote extends Component {
   //POST new note
   handleNewNote = (e, callback) => {
     e.preventDefault();
-    console.log(" e: ", e);
+    // console.log(" e: ", e);
 
     const moment = require("moment");
     //using refs to get input info
@@ -52,7 +52,7 @@ class AddNote extends Component {
       folderId: this.noteFolderSelect.current.value,
       content: this.noteContentInput.current.value
     };
-    console.log("title(note): ", title);
+    // console.log("title(note): ", title);
 
     fetch(config.API_NOTES, {
       method: "POST",
@@ -68,9 +68,9 @@ class AddNote extends Component {
         return response.json();
       })
       .then(note => {
-        console.log("addNote fetch data", note);
-        console.log(this.context.addNote);
-        console.log("hi!", callback);
+        // console.log("addNote fetch data", note);
+        // console.log(this.context.addNote);
+        // console.log("hi!", callback);
         // console.log("this. prop.history", this.props.history);
         // this.context.addNote(note);
 
@@ -82,14 +82,14 @@ class AddNote extends Component {
   };
 
   returnToFolder = note => {
-    console.log("going to folder", this.props);
+    //console.log("going to folder", this.props);
 
     this.props.history.push("/folder/" + note.folderId);
   };
 
   onNewNoteCreation = e => {
     e.preventDefault();
-    console.log("new note initiated");
+    // console.log("new note initiated");
     //handleNewNote
     this.handleNewNote(e, this.context.addNote);
   };

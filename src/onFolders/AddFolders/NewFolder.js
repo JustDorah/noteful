@@ -71,8 +71,8 @@ class NewFolder extends Component {
 
   onNewFolderCreation = e => {
     e.preventDefault();
-    console.log("new folder initiated!");
-    console.log(this.folderNameInput.current.value);
+    // console.log("new folder initiated!");
+    // console.log(this.folderNameInput.current.value);
     const folderName = this.folderNameInput.current.value;
     this.handleNewFolder(folderName, this.context.addFolder);
     //this.returnHome();

@@ -42,7 +42,7 @@ class App extends Component {
       })
       .then(this.setFolder)
       .catch(error => {
-        console.log("error in fetch folder app.js ", error);
+        // console.log("error in fetch folder app.js ", error);
         this.setState({ error });
       });
 
@@ -61,7 +61,7 @@ class App extends Component {
       })
       .then(this.setNote)
       .catch(error => {
-        console.log("error in fetch note app.js ", error);
+        // console.log("error in fetch note app.js ", error);
         this.setState({ error });
       });
   }
@@ -86,10 +86,10 @@ class App extends Component {
 
   /**Set State of deleted Note */
   deleteNote = noteId => {
-    console.log("noteID in App", noteId);
+    // console.log("noteID in App", noteId);
     const newNotes = this.state.ApiNotes.filter(n => n.id !== noteId);
     this.setState({ ApiNotes: newNotes });
-    console.log(newNotes, "noteID");
+    // console.log(newNotes, "noteID");
   };
 
   /** Set state of newly created folder */
@@ -102,7 +102,7 @@ class App extends Component {
 
   /** Set state of newly created note */
   addNote = note => {
-    console.log("apiNotes addNote gotten");
+    // console.log("apiNotes addNote gotten");
 
     let addedNote = [...this.state.ApiNotes, note];
     this.setState({
